@@ -4,7 +4,7 @@ distdir=/var/tmp/dist/[% project %]
 mkdir -p /var/tmp/dist
 tar -C /var/tmp/dist -xf [% c('input_files_by_name/cmake') %]
 export PATH="/var/tmp/dist/cmake/bin:$PATH"
-[% IF c("var/linux") %]
+[% IF c("var/linux") or c("var/android") %]
   # We need a link to our GCC, otherwise the system cc gets used which points to
   # /usr/bin/gcc.
   [% pc('gcc', 'var/setup', { compiler_tarfile => c('input_files_by_name/gcc'),

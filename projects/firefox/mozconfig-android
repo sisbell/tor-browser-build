@@ -9,7 +9,7 @@ ac_add_options --enable-application=mobile/android
 ac_add_options --target=arm-linux-androideabi
 #ac_add_options --with-android-version=23
 ac_add_options --with-android-ndk=/var/tmp/dist/android-ndk-r15c
-ac_add_options --with-android-sdk=/var/tmp/dist/android-toolchain/ #Enter the android sdk location
+ac_add_options --with-android-sdk=/var/tmp/dist/android-toolchain/ 
 #ac_add_options --with-branding=mobile/android/branding/torbrowser
 
 if [ -n "${TB_BUILD_WITH_DISTRIBUTION}" ]; then

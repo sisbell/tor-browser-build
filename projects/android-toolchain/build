@@ -12,6 +12,9 @@ mkdir -p $NDK_HOME $ANDROID_HOME
 unzip $HOME/sdk.zip -d $ANDROID_HOME
 unzip $HOME/ndk.zip 
 
+#Setup Android NDK
+./android-ndk-r15c/build/tools/make_standalone_toolchain.py --api 23 --arch arm --install-dir=$NDK_HOME/arm
+
 # Accept Android Licenses
 /usr/bin/expect -c '
 set timeout -1;

@@ -39,6 +39,11 @@ var:
     [% END -%]
 
 targets:
+  android:
+    var:
+      configure_opt: --enable-multilib --enable-languages=c,c++ --with-arch_32=i686
+      arch_deps:
+        - libc6-dev-i386
   windows:
     var:
       configure_opt: --disable-multilib --enable-languages=c,c++

@@ -7,6 +7,14 @@ var:
     use_container: 1
 
 targets:
+  android:
+    var:
+      arch_deps:
+        - libssl-dev
+        - pkg-config
+        - zlib1g-dev
+      configure_opt: --enable-local-rust --enable-vendor --enable-extended --release-channel=stable --sysconfdir=etc --target=armv7-linux-androideabi,x86_64-unknown-linux-gnu --set=target.x86_64-unknown-linux-gnu.cc=gcc --set=target.armv7-linux-androideabi.cc=$NDK_HOME/arm/bin/arm-linux-androideabi-gcc --arm-linux-androideabi-ndk=$NDK_HOME/arm/bin/ --set=target.armv7-linux-androideabi.linker=$NDK_HOME/arm/bin/arm-linux-androideabi-clang --set=target.armv7-linux-androideabi.ar=$NDK_HOME/arm/bin/arm-linux-androideabi-ar
+      
   linux:
     var:
       arch_deps:
@@ -71,5 +79,18 @@ input_files:
     sig_ext: asc
     file_gpg_id: 1
     gpg_keyring: rust.gpg
+    enable: '[% ! c("var/android") %]'
+  - URL: 'https://static.rust-lang.org/dist/rust-[% c("var/prev_version") %]-x86_64-unknown-linux-gnu.tar.xz'
+    name: prev_rust
+    sig_ext: asc
+    file_gpg_id: 1
+    gpg_keyring: rust.gpg
+    enable: '[% c("var/android") %]'
   - filename: unwind.patch
     enable: '[% c("var/windows-i686") %]'
+  - project: android-toolchain
+    name: android-toolchain
+    enable: '[% c("var/android") %]'
+  - filename: android.patch
+    enable: '[% c("var/android") %]'
+

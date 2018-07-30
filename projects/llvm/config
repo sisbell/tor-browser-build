@@ -10,7 +10,7 @@ input_files:
   - project: container-image
   - name: '[% c("var/compiler") %]'
     project: '[% c("var/compiler") %]'
-    enable: '[% c("var/linux") %]'
+    enable: '[% c("var/linux") or c("var/android") %]'
   - project: cmake
     name: cmake
   - URL: 'https://releases.llvm.org/[% c("version") %]/llvm-[% c("version") %].src.tar.xz'
