@@ -1,0 +1,28 @@
+### Updating Gradle Dependencies
+If additional android dependencies are added to the Firefox Android build, then
+the gradle build will fail due to missing dependencies. To find out what the
+missing dependencies are, comment out the following line in the firefox build
+file:
+
+   export GRADLE_MAVEN_REPOSITORIES="file://$rootdir/[% c('input_files_by_name/gradle-dependencies') %]"
+
+and rerun the build.
+
+Dependent artifacts will show up as downloads in the logs. You can pull out
+these dependencies into a list with the following command:
+
+`cat logs/firefox-android-armv7.log | grep "Download http" | sed "s/^.*Download //g" > download-urls.txt`
+
+You will then need to add the new dependency URLs and sha256 values into the
+projects/firefox/gradle-dependencies-list.txt file. The format of this file is
+pipe delimited
+   sha256sum | url
+
+Finally, in the firefox config file increment the
+var/gradle_dependencies_version and make sure to restore the firefox build file
+back to original.
+
+It may also be the case that you wish to cleanup old versions of the artifacts.
+For this you will need to run the build with an empty
+gradle-dependencies-list.txt file and proceed to reconstruct the list from
+scratch.
