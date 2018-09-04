@@ -1,0 +1,10 @@
+diff --git a/gradle.properties b/gradle.properties
+index 4f89f18a5261..cf95867a2072 100644
+--- a/gradle.properties
++++ b/gradle.properties
+@@ -1,4 +1,4 @@
+-org.gradle.parallel=true
++org.gradle.parallel=false
+ org.gradle.daemon=true
+ org.gradle.jvmargs=-Xmx2560M
+ android.enableAapt2=false

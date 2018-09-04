@@ -1,13 +1,20 @@
 #!/bin/bash
 [% c("var/setarch") -%]
 [% c("var/set_default_env") -%]
+
 [% IF c("var/windows") -%]
   [% pc('gcc', 'var/setup', { compiler_tarfile => c('input_files_by_name/gcc') }) %]
   # We need a link to our GCC, otherwise the system cc gets used which points to
   # /usr/bin/gcc.
   ln -s gcc /var/tmp/dist/gcc/bin/cc
 [% END -%]
+
 [% pc(c('var/compiler'), 'var/setup', { compiler_tarfile => c('input_files_by_name/' _ c('var/compiler')) }) %]
+
+[% IF c('var/android') %]
+  ln -s gcc $ANDROID_NDK_HOME/arm/bin/gcc
+[% END -%]
+
 distdir=/var/tmp/dist/[% project %]
 mkdir -p /var/tmp/build
 
@@ -51,7 +58,7 @@ EOF
   wine wineboot -i
 [% END -%]
 
-[% IF c("var/linux") %]
+[% IF c("var/linux") or c("var/android") %]
   mkdir -p /var/tmp/dist
   tar -C /var/tmp/dist -xf $rootdir/[% c('input_files_by_name/binutils') %]
   export PATH="/var/tmp/dist/binutils/bin:$PATH"
@@ -132,6 +139,11 @@ fi
   export CC='gcc -m32'
 [% END -%]
 
+[% IF c("var/android") %]
+  patch -p1 < $rootdir/android.patch
+  patch -p1 < $rootdir/gradle.patch
+[% END -%]
+
 [% IF c("var/windows") %]
   patch -p1 < $rootdir/nsis-uninstall.patch
   patch -p1 < $rootdir/1464084.patch
@@ -143,7 +155,13 @@ rm -f js/src/configure
 
 ./mach configure --with-tor-browser-version=[% c("var/torbrowser_version") %] --with-distribution-id=org.torproject --enable-update-channel=[% c("var/torbrowser_update_channel") %] --enable-bundled-fonts
 ./mach build --verbose
-./mach build stage-package
+
+[% IF c("var/android") %]
+  ./mach package
+    cp -a obj-*/dist/* $distdir/Browser/
+[% ELSE %]
+  ./mach build stage-package
+[% END -%]
 
 [% IF c("var/osx") %]
   cp -a obj-macos/dist/firefox/* $distdir
@@ -182,12 +200,15 @@ rm -f js/src/configure
 # host's architecture.  We also include signmar, certutil, and the libraries
 # they require; these utilities and libraries are built for the target
 # architecture.
-MARTOOLS=$distdir/mar-tools
-mkdir -p $MARTOOLS
-cp -p config/createprecomplete.py $MARTOOLS/
-cp -p tools/update-packaging/*.sh $MARTOOLS/
-cp -p obj-*/dist/host/bin/mar $MARTOOLS/
-cp -p obj-*/dist/host/bin/mbsdiff $MARTOOLS/
+[% IF !c("var/android") %]
+  MARTOOLS=$distdir/mar-tools
+  mkdir -p $MARTOOLS
+  cp -p config/createprecomplete.py $MARTOOLS/
+  cp -p tools/update-packaging/*.sh $MARTOOLS/
+  cp -p obj-*/dist/host/bin/mar $MARTOOLS/
+  cp -p obj-*/dist/host/bin/mbsdiff $MARTOOLS/
+[% END %]
+
 [% IF c("var/linux") %]
   cp -p obj-*/modules/libmar/tool/signmar $MARTOOLS/
   cp -p obj-*/security/nss/cmd/certutil/certutil_certutil/certutil $MARTOOLS/
@@ -249,7 +270,9 @@ END;
     }) %]
 [% END %]
 
+[% IF !c("var/android") %]
 [% c('zip', {
         zip_src => [ 'mar-tools' ],
         zip_args => dest_dir _ '/' _ c('filename') _ '/' _ c('var/martools_filename'),
-    }) %]
+    }) %]i
+[% END %]

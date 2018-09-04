@@ -33,6 +33,25 @@ targets:
     var:
       torbrowser_update_channel: default
 
+  android-armv7:
+    var:
+      arch_deps:
+        - nodejs
+        - uuid
+        - python-dev
+        - python-pip
+        - python-setuptools
+        - openjdk-8-jdk
+        - libgtk2.0-dev
+        - libgtk-3-dev
+        - libdbus-glib-1-dev
+        - libxt-dev
+        - libpulse-dev
+        - libgconf2-dev
+        - libx11-xcb-dev
+        - chrpath
+      martools_filename: mar-tools-android.zip
+
   linux:
     var:
       arch_deps:
@@ -87,7 +106,7 @@ input_files:
     name: mozconfig
   - project: binutils
     name: binutils
-    enable: '[% c("var/linux") %]'
+    enable: '[% c("var/linux") or c("var/android") %]'
   - project: selfrando
     name: selfrando
     enable: '[% c("var/selfrando") %]'
@@ -116,3 +135,8 @@ input_files:
   - project: fxc2
     name: fxc2
     enable: '[% c("var/windows") %]'
+  - filename: android.patch
+    enable: '[% c("var/android") %]'
+  - filename: gradle.patch
+    enable: '[% c("var/android") %]'
+
