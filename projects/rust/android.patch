@@ -1,0 +1,66 @@
+diff --git a/src/libbacktrace/elf.c b/src/libbacktrace/elf.c
+index 81ba3440ab..35e5658044 100644
+--- a/src/libbacktrace/elf.c
++++ b/src/libbacktrace/elf.c
+@@ -43,8 +43,6 @@ POSSIBILITY OF SUCH DAMAGE.  */
+ #include "backtrace.h"
+ #include "internal.h"
+ 
+-#ifndef HAVE_DL_ITERATE_PHDR
+-
+ /* Dummy version of dl_iterate_phdr for systems that don't have it.  */
+ 
+ #define dl_phdr_info x_dl_phdr_info
+@@ -64,8 +62,6 @@ dl_iterate_phdr (int (*callback) (struct dl_phdr_info *,
+   return 0;
+ }
+ 
+-#endif /* ! defined (HAVE_DL_ITERATE_PHDR) */
+-
+ /* The configure script must tell us whether we are 32-bit or 64-bit
+    ELF.  We could make this code test and support either possibility,
+    but there is no point.  This code only works for the currently
+diff --git a/src/libbacktrace/mmap.c b/src/libbacktrace/mmap.c
+index 138ef70711..e3c4cd2643 100644
+--- a/src/libbacktrace/mmap.c
++++ b/src/libbacktrace/mmap.c
+@@ -140,7 +140,7 @@ backtrace_alloc (struct backtrace_state *state,
+     {
+       /* Allocate a new page.  */
+ 
+-      pagesize = getpagesize ();
++      pagesize = sysconf(_SC_PAGESIZE); 
+       asksize = (size + pagesize - 1) & ~ (pagesize - 1);
+       page = mmap (NULL, asksize, PROT_READ | PROT_WRITE,
+ 		   MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+@@ -181,7 +181,7 @@ backtrace_free (struct backtrace_state *state, void *addr, size_t size,
+     {
+       size_t pagesize;
+ 
+-      pagesize = getpagesize ();
++      pagesize = sysconf(_SC_PAGESIZE); 
+       if (((uintptr_t) addr & (pagesize - 1)) == 0
+ 	  && (size & (pagesize - 1)) == 0)
+ 	{
+@@ -226,7 +226,7 @@ backtrace_vector_grow (struct backtrace_state *state,size_t size,
+       size_t alc;
+       void *base;
+ 
+-      pagesize = getpagesize ();
++      pagesize = sysconf(_SC_PAGESIZE); 
+       alc = vec->size + size;
+       if (vec->size == 0)
+ 	alc = 16 * size;
+diff --git a/src/libbacktrace/mmapio.c b/src/libbacktrace/mmapio.c
+index dfdaf6fa52..5b23003090 100644
+--- a/src/libbacktrace/mmapio.c
++++ b/src/libbacktrace/mmapio.c
+@@ -60,7 +60,7 @@ backtrace_get_view (struct backtrace_state *state ATTRIBUTE_UNUSED,
+   off_t pageoff;
+   void *map;
+ 
+-  pagesize = getpagesize ();
++  pagesize = sysconf(_SC_PAGESIZE); 
+   inpage = offset % pagesize;
+   pageoff = offset - inpage;
+ 
