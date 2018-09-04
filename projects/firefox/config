@@ -21,6 +21,8 @@ var:
     - python
   container:
     use_container: 1
+  # this should be updated when the list of gradle dependencies is changed
+  gradle_dependencies_version: 1
 
 targets:
   release:
@@ -32,6 +34,24 @@ targets:
     tag_gpg_id: 0
     var:
       torbrowser_update_channel: default
+
+  android-armv7:
+    var:
+      arch_deps:
+        - nodejs
+        - uuid
+        - python-dev
+        - python-pip
+        - python-setuptools
+        - openjdk-8-jdk
+        - libgtk2.0-dev
+        - libgtk-3-dev
+        - libdbus-glib-1-dev
+        - libxt-dev
+        - libpulse-dev
+        - libgconf2-dev
+        - libx11-xcb-dev
+        - chrpath
 
   linux:
     var:
@@ -120,3 +140,7 @@ input_files:
     enable: '[% c("var/linux") %]'
   - filename: start-firefox
     enable: '[% c("var/linux") %]'
+  - filename: 'gradle-dependencies-[% c("var/gradle_dependencies_version") %]'
+    name: gradle-dependencies
+    exec: '[% INCLUDE "fetch-gradle-dependencies" %]'
+    enable: '[% c("var/android") %]'
