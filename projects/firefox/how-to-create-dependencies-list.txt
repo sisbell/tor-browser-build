@@ -1,0 +1,13 @@
+### Updating Gradle Dependencies
+If additional android dependencies are added to the Firefox Android build, then they will show up as downloads in the logs. You can pull out these dependencies into a list with the following command:
+
+`cat logs/firefox-android-armv7.log | grep "Download http" | sed "s/^.*Download //g" > download-urls.txt`
+
+You will then need to add the new dependency URLs and sha256 values into the projects/firefox/gradle-dependencies-list.txt file. The format of this file is pipe delimited
+  * sha256sum | url
+
+Finally, in the firefox config file increment the var/gradle_dependencies_version
+
+Note, that if any dependencies have changed in the firefox build.gradle files, it is important to check the firefox-android-armv7.log to see if any new downloads are occurring. This can be done by running the cat command above and observing that the download-urls.txt file is empty.
+
+It may also be the case that you wish to cleanup old versions of the artifacts. For this you will need to run the build with an empty gradle-dependencies-list.txt file and proceed to reconstruct the list from scratch.
