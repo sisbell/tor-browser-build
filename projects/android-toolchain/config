@@ -1,0 +1,47 @@
+# vim: filetype=yaml sw=2
+filename: '[% project %]-[% c("version") %]-[% c("var/build_id") %].tar.gz'
+version: 26.0.2 
+var:
+  container:
+    use_container: 1
+  deps:
+    - openjdk-8-jdk
+    - unzip
+    - expect
+    - python
+  setup: |
+    mkdir -p /var/tmp/dist
+    tar -C /var/tmp/dist -xf $rootdir/[% c("compiler_tarfile") %]
+    export ANDROID_SDK_HOME=/var/tmp/dist/[% project %]/android-sdk-linux
+    export ANDROID_NDK_HOME=/var/tmp/dist/[% project %]/android-ndk
+    export GRADLE_DEPS=/var/tmp/dist/[% project %]/android-gradle-dependencies
+    export GRADLE_HOME=/var/tmp/dist/[% project %]/gradle
+    export GRADLE_MAVEN_REPOSITORIES="file:///var/tmp/dist/android-toolchain/android-gradle-dependencies/m2"
+  google_repo: https://dl.google.com/android/repository
+input_files:
+  - project: container-image
+  - URL: '[% c("var/google_repo") %]/build-tools_r23.0.3-linux.zip'
+    name: build_tools_23    
+    sha256sum: d961663d4a9e128841751c0156548a347c882c081c83942e53788d8949bf34e1
+  - URL: '[% c("var/google_repo") %]/platform-23_r03.zip'
+    name: platform_tools_23
+    sha256sum: 4b4bcddead3319708275c54c76294707bfaa953d767e34f1a5b599f3edd0076c
+  - URL: '[% c("var/google_repo") %]/build-tools_r26.0.2-linux.zip'
+    name: build_tools_26
+    sha256sum: a752849fac85c4a7f9ea165ec8f367b0ebe8bbf6a1f33fc8605342be004231ce
+  - URL: '[% c("var/google_repo") %]/platform-tools_r26.0.2-linux.zip'
+    name: platform_tools_26
+    sha256sum: 63b15a38c2b64e6ec8b54febe9f69fce5fe6c898c554c73b826b49daf7b52519
+  - URL: '[% c("var/google_repo") %]/sdk-tools-linux-3859397.zip'
+    name: android_sdk_tools
+    sha256sum: 444e22ce8ca0f67353bda4b85175ed3731cae3ffa695ca18119cbacef1c1bea0 
+  - URL: '[% c("var/google_repo") %]/android-ndk-r15c-linux-x86_64.zip'
+    name: android_ndk_compiler
+    sha256sum: f01788946733bf6294a36727b99366a18369904eb068a599dde8cca2c1d2ba3c
+  - URL: http://35.202.45.198/maven-repo.tar.gz 
+    name: gradle_dependencies
+    filename: gradle_dependencies.tar.gz
+    sha256sum: 4e985da3755497c544c54d9c45578b779c8e9e71dc6a074c53a04b8fe00050ff 
+  - URL: http://services.gradle.org/distributions/gradle-4.1-bin.zip
+    name: gradle_bin
+    sha256sum: d55dfa9cfb5a3da86a1c9e75bb0b9507f9a8c8c100793ccec7beb6e259f9ed43
