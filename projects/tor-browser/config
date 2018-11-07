@@ -14,6 +14,7 @@ var:
     - unzip
     - bzip2
     - xz-utils
+  desktop: 1
 
 targets:
   linux-i686:
@@ -41,29 +42,39 @@ targets:
   windows-x86_64:
     var:
       mar_osname: win64
+  android-armv7:
+    build: '[% INCLUDE build.android %]'
+    var:
+      desktop: 0
 
 input_files:
   - project: container-image
   - filename: run_scripts
+    enable: '[% c("var/desktop") %]'
   - project: firefox
     name: firefox
   - project: tor
     name: tor
+    enable: '[% c("var/desktop") %]'
   - project: firefox-langpacks
     name: firefox-langpacks
-    enable: '[% c("var/locales").size %]'
+    enable: '[% c("var/locales").size && c("var/desktop") %]'
   - project: tor-launcher
     name: tor-launcher
+    enable: '[% c("var/desktop") %]'
   - project: torbutton
     name: torbutton
   - project: https-everywhere
     name: https-everywhere
   - project: fonts
     name: fonts
+    enable: '[% c("var/desktop") %]'
   - project: meek
     name: meek
+    enable: '[% c("var/desktop") %]'
   - project: obfs4
     name: obfs4
+    enable: '[% c("var/desktop") %]'
   - project: fteproxy
     name: fteproxy
     enable: '[% c("var/fteproxy") %]'
@@ -71,6 +82,7 @@ input_files:
     name: snowflake
     enable: '[% c("var/snowflake") %]'
   - filename: Bundle-Data
+    enable: '[% c("var/desktop") %]'
   - URL: https://addons.cdn.mozilla.net/user-media/addons/722/noscript_security_suite-10.1.9.9-an+fx.xpi
     name: noscript
     sha256sum: e7ec0345c2174e64c7552ab708a59c8efd7c1078fedda64d9c9ad06a899194b9

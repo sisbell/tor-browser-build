@@ -1,0 +1,15 @@
+#!/bin/bash
+build_dir=/var/tmp/build
+ext_dir=$build_dir/apk/assets/distribution/extensions
+apkfile=$( find [% c('input_files_by_name/firefox') %] -name "*-unaligned.apk" )
+apkname='tor-browser-[% c("version") %]-[% c("var/osname") %].apk'
+
+mkdir -p $ext_dir [% dest_dir _ '/' _ c('filename') %]
+unzip -qq $apkfile -d $build_dir/apk
+mv [% c('input_files_by_name/torbutton') %] $ext_dir/torbutton@torproject.org.xpi
+mv [% c('input_files_by_name/https-everywhere') %] $ext_dir/https-everywhere-eff@eff.org.xpi
+mv [% c('input_files_by_name/noscript') %] $ext_dir/{73a6fe31-595d-460b-a920-fcc0f8843232}.xpi
+
+cd $build_dir/apk
+zip -r $apkname .
+cp $apkname [% dest_dir _ '/' _ c('filename') %]
