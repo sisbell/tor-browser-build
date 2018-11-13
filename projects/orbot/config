@@ -1,0 +1,32 @@
+# vim: filetype=yaml sw=2
+version: '[% c("abbrev") %]'
+filename: 'orbot-[% c("version") %]-[% c("var/osname") %]-[% c("var/build_id") %]'
+git_hash: master 
+git_url: https://git.torproject.org/orbot.git
+git_submodule: 1 
+
+var:
+  deps:
+    - autotools-dev 
+    - unzip
+    - zip
+    - automake
+    - autoconf
+    - libtool
+    - gettext-base
+    - autopoint 
+  container:
+    use_container: 1
+  # this should be updated when the list of gradle dependencies is changed
+  gradle_dependencies_version: 1 
+
+targets:
+  android-armv7:
+    var:
+      arch_deps:
+        - openjdk-8-jdk
+
+input_files:
+  - project: container-image
+  - name: '[% c("var/compiler") %]'
+    project: '[% c("var/compiler") %]'
