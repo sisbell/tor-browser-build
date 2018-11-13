@@ -1,0 +1,28 @@
+#!/bin/bash
+[% c("var/set_default_env") -%]
+output_dir=[% dest_dir %]/[% c('filename') %]
+gradle_repo=$rootdir/[% c('input_files_by_name/gradle-dependencies') %]
+export GRADLE_MAVEN_REPO="file://$gradle_repo"
+cp -r $gradle_repo/guardianproject/gpmaven/master/* $gradle_repo
+
+mkdir -p /var/tmp/build $output_dir 
+
+[% pc(c('var/compiler'), 'var/setup', { compiler_tarfile => c('input_files_by_name/' _ c('var/compiler')) }) %]
+tar -C /var/tmp/build -xf [% project %]-[% c('version') %].tar.gz
+
+cd /var/tmp/build/[% project %]-[% c('version') %]
+patch -p1 < $rootdir/28051_orbot_v0.patch
+patch -p1 < $rootdir/repo.patch
+
+cd /var/tmp/build/[% project %]-[% c('version') %]/orbotservice/src/main
+/var/tmp/dist/android-toolchain/android-ndk/ndk-build
+mv libs/armeabi/pdnsd libs/armeabi/pdnsd.so
+mv libs/armeabi-v7a/pdnsd libs/armeabi-v7a/pdnsd.so
+mv libs/x86/pdnsd libs/x86/pdnsd.so
+
+cd /var/tmp/build/[% project %]-[% c('version') %]
+$GRADLE_HOME/gradle-4.4/bin/gradle build --offline -x lint
+
+#TODO: package and sign debug
+cp app/build/outputs/aar/* $output_dir
+cp orbotservice/build/outputs/aar/* $output_dir

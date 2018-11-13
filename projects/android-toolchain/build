@@ -17,7 +17,7 @@ unzip -qq [% c("input_files_by_name/gradle_bin") %] -d $GRADLE_HOME
 cd $NDK_HOME
 mv android-ndk-r15c/* .
 rm -fR android-ndk-r15c
-./build/tools/make_standalone_toolchain.py --api 26 --arch arm --install-dir=./arm
+./build/tools/make_standalone_toolchain.py --api 16 --arch arm --install-dir=./arm
 
 # Tool Archives
 cd $SDK_HOME
@@ -28,6 +28,14 @@ mv android-8.1.0/* build-tools/26.0.2
 unzip -qq $HOME/[% c("input_files_by_name/platform_26") %] -d $SDK_HOME
 mkdir -p platforms/android-26
 mv android-8.0.0/* platforms/android-26
+
+unzip -qq $HOME/[% c("input_files_by_name/build_tools_27") %] -d $SDK_HOME
+mkdir -p build-tools/27.0.3
+mv android-8.1.0/* build-tools/27.0.3
+
+unzip -qq $HOME/[% c("input_files_by_name/platform_27") %] -d $SDK_HOME
+mkdir -p platforms/android-27
+mv android-8.1.0/* platforms/android-27
 
 unzip -qq $HOME/[% c("input_files_by_name/platform_tools_26") %] -d $SDK_HOME
 
