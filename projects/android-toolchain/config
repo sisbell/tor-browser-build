@@ -13,15 +13,23 @@ var:
     export ANDROID_SDK_HOME=/var/tmp/dist/[% project %]/android-sdk-linux
     export ANDROID_NDK_HOME=/var/tmp/dist/[% project %]/android-ndk
     export GRADLE_HOME=/var/tmp/dist/[% project %]/gradle
+    export ANDROID_HOME=$ANDROID_SDK_HOME
+    export GRADLE_USER_HOME=$GRADLE_HOME
   google_repo: https://dl.google.com/android/repository
 input_files:
   - project: container-image
   - URL: '[% c("var/google_repo") %]/build-tools_r26.0.2-linux.zip'
     name: build_tools_26
     sha256sum: a752849fac85c4a7f9ea165ec8f367b0ebe8bbf6a1f33fc8605342be004231ce
+  - URL: '[% c("var/google_repo") %]/build-tools_r27.0.3-linux.zip'
+    name: build_tools_27
+    sha256sum: 5e1f4fc5203f13de120c56f9cc103bb2e57d940959547506196ab10ddc9e6b97 
   - URL: '[% c("var/google_repo") %]/platform-26_r02.zip'
     name: platform_26
     sha256sum: 2aafa7d19c5e9c4b643ee6ade3d85ef89dc2f79e8383efdb9baf7fddad74b52a
+  - URL: '[% c("var/google_repo") %]/platform-27_r01.zip'
+    name: platform_27
+    sha256sum: cbba6f8fcf025e1b533326746763aa1d6e2cf4001b1b441602bb44d253bc49ac 
   - URL: '[% c("var/google_repo") %]/platform-tools_r26.0.2-linux.zip'
     name: platform_tools_26
     sha256sum: 63b15a38c2b64e6ec8b54febe9f69fce5fe6c898c554c73b826b49daf7b52519
@@ -31,6 +39,6 @@ input_files:
   - URL: '[% c("var/google_repo") %]/android-ndk-r15c-linux-x86_64.zip'
     name: android_ndk_compiler
     sha256sum: f01788946733bf6294a36727b99366a18369904eb068a599dde8cca2c1d2ba3c
-  - URL: http://services.gradle.org/distributions/gradle-4.1-bin.zip
+  - URL: http://services.gradle.org/distributions/gradle-4.4-bin.zip
     name: gradle_bin
-    sha256sum: d55dfa9cfb5a3da86a1c9e75bb0b9507f9a8c8c100793ccec7beb6e259f9ed43
+    sha256sum: fa4873ae2c7f5e8c02ec6948ba95848cedced6134772a0169718eadcb39e0a2f 
