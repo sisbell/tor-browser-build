@@ -4,6 +4,8 @@ version: 26.0.2
 var:
   container:
     use_container: 1
+  # Version of the Android NDK to package for building rust
+  standalone_ndk: 16
   deps:
     - unzip
     - python
@@ -13,6 +15,8 @@ var:
     export ANDROID_SDK_HOME=/var/tmp/dist/[% project %]/android-sdk-linux
     export ANDROID_NDK_HOME=/var/tmp/dist/[% project %]/android-ndk
     export GRADLE_HOME=/var/tmp/dist/[% project %]/gradle
+    export ANDROID_HOME=$ANDROID_SDK_HOME
+    export GRADLE_USER_HOME=$GRADLE_HOME
   google_repo: https://dl.google.com/android/repository
 input_files:
   - project: container-image
