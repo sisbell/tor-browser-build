@@ -1,0 +1,40 @@
+# vim: filetype=yaml sw=2
+version: '[% c("abbrev") %]'
+filename: 'orbot-[% c("version") %]-[% c("var/osname") %]-[% c("var/build_id") %]'
+git_hash: '[% c("var/orbot_version") %]-tor-[% c("var/tor_version") %]'
+git_url: https://git.torproject.org/orbot.git
+git_submodule: 1
+
+var:
+  tor_version: 0.3.4.9
+  orbot_version: 16.0.5-RC-1
+  deps:
+    - build-essential
+    - autotools-dev
+    - unzip
+    - zip
+    - automake
+    - autoconf
+    - libtool
+    - gettext-base
+    - autopoint
+  container:
+    use_container: 1
+  # this should be updated when the list of gradle dependencies is changed
+  gradle_dependencies_version: 2
+
+targets:
+  android-armv7:
+    var:
+      arch_deps:
+        - openjdk-8-jdk
+
+input_files:
+  - project: container-image
+  - name: '[% c("var/compiler") %]'
+    project: '[% c("var/compiler") %]'
+  - filename: 0001-Bug-28051-Build-Orbot-as-a-Library.patch
+  - filename: set_gradle_repo_to_local.patch
+  - filename: 'gradle-dependencies-[% c("var/gradle_dependencies_version") %]'
+    name: gradle-dependencies
+    exec: '[% INCLUDE "fetch-gradle-dependencies" %]'
