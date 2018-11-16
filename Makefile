@@ -26,6 +26,9 @@ release-osx-x86_64: submodule-update
 alpha: submodule-update
 	$(rbm) build release --target alpha --target torbrowser-all
 
+alpha-android-armv7: submodule-update
+	$(rbm) build release --target alpha --target torbrowser-android-armv7
+
 alpha-linux-x86_64: submodule-update
 	$(rbm) build release --target alpha --target torbrowser-linux-x86_64
 
