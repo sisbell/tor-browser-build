@@ -1,0 +1,39 @@
+From c487b13bfc21a2e5ececdf0f5ad151afef011cf5 Mon Sep 17 00:00:00 2001
+From: Matthew Finkel <Matthew.Finkel@gmail.com>
+Date: Sat, 24 Nov 2018 04:48:27 +0000
+Subject: [PATCH 07/12] Bug 28051 - Rename Orbot's preferences so they don't
+ conflict with Fennec's
+
+---
+ .../org/torproject/android/settings/SettingsPreferences.java   | 3 ++-
+ .../main/res/xml-fa/{preferences.xml => orbot_preferences.xml} | 0
+ .../main/res/xml/{preferences.xml => orbot_preferences.xml}    | 0
+ 3 files changed, 2 insertions(+), 1 deletion(-)
+ rename app/src/main/res/xml-fa/{preferences.xml => orbot_preferences.xml} (100%)
+ rename app/src/main/res/xml/{preferences.xml => orbot_preferences.xml} (100%)
+
+diff --git a/app/src/main/java/org/torproject/android/settings/SettingsPreferences.java b/app/src/main/java/org/torproject/android/settings/SettingsPreferences.java
+index df85a9f6..380927c2 100644
+--- a/app/src/main/java/org/torproject/android/settings/SettingsPreferences.java
++++ b/app/src/main/java/org/torproject/android/settings/SettingsPreferences.java
+@@ -24,7 +24,8 @@ public class SettingsPreferences
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+ 
+-        addPreferencesFromResource(R.xml.preferences);
++        // Rename preferences do it doesn't conflict with Fennec
++        addPreferencesFromResource(R.xml.orbot_preferences);
+         getPreferenceManager().setSharedPreferencesMode(Context.MODE_MULTI_PROCESS);
+ 
+         prefLocale = (ListPreference) findPreference("pref_default_locale");
+diff --git a/app/src/main/res/xml-fa/preferences.xml b/app/src/main/res/xml-fa/orbot_preferences.xml
+similarity index 100%
+rename from app/src/main/res/xml-fa/preferences.xml
+rename to app/src/main/res/xml-fa/orbot_preferences.xml
+diff --git a/app/src/main/res/xml/preferences.xml b/app/src/main/res/xml/orbot_preferences.xml
+similarity index 100%
+rename from app/src/main/res/xml/preferences.xml
+rename to app/src/main/res/xml/orbot_preferences.xml
+-- 
+2.17.1
+

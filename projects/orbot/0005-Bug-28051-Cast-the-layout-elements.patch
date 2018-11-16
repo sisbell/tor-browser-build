@@ -1,0 +1,79 @@
+From 653a7f6f119b26dd7920ea802435d3b3163ec19d Mon Sep 17 00:00:00 2001
+From: Matthew Finkel <Matthew.Finkel@gmail.com>
+Date: Sat, 24 Nov 2018 04:44:03 +0000
+Subject: [PATCH 05/12] Bug 28051 - Cast the layout elements
+
+---
+ .../torproject/android/ui/AppManagerActivity.java    |  4 ++--
+ .../android/ui/onboarding/BridgeWizardActivity.java  | 12 ++++++------
+ 2 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/app/src/main/java/org/torproject/android/ui/AppManagerActivity.java b/app/src/main/java/org/torproject/android/ui/AppManagerActivity.java
+index 2f60a40c..5bdcd504 100644
+--- a/app/src/main/java/org/torproject/android/ui/AppManagerActivity.java
++++ b/app/src/main/java/org/torproject/android/ui/AppManagerActivity.java
+@@ -58,8 +58,8 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
+         this.setContentView(R.layout.layout_apps);
+         setTitle(R.string.apps_mode);
+         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+-        listApps = findViewById(R.id.applistview);
+-        progressBar = findViewById(R.id.progressBar);
++        listApps = (GridView) findViewById(R.id.applistview);
++        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+     }
+ 
+     /*
+diff --git a/app/src/main/java/org/torproject/android/ui/onboarding/BridgeWizardActivity.java b/app/src/main/java/org/torproject/android/ui/onboarding/BridgeWizardActivity.java
+index e03a8d2d..e047e58f 100644
+--- a/app/src/main/java/org/torproject/android/ui/onboarding/BridgeWizardActivity.java
++++ b/app/src/main/java/org/torproject/android/ui/onboarding/BridgeWizardActivity.java
+@@ -34,16 +34,16 @@ public class BridgeWizardActivity extends AppCompatActivity {
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_bridge_wizard);
+-        Toolbar toolbar = findViewById(R.id.toolbar);
++        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         setSupportActionBar(toolbar);
+         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+ 
+-        tvStatus = findViewById(R.id.lbl_bridge_test_status);
++        tvStatus = (TextView) findViewById(R.id.lbl_bridge_test_status);
+         tvStatus.setVisibility(View.GONE);
+ 
+         setTitle(getString(R.string.bridges));
+ 
+-        RadioButton btnDirect = findViewById(R.id.btnBridgesDirect);
++        RadioButton btnDirect = (RadioButton) findViewById(R.id.btnBridgesDirect);
+         btnDirect.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -53,7 +53,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
+             }
+         });
+ 
+-        RadioButton btnObfs4 = findViewById(R.id.btnBridgesObfs4);
++        RadioButton btnObfs4 = (RadioButton) findViewById(R.id.btnBridgesObfs4);
+         btnObfs4.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -64,7 +64,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
+         });
+ 
+ 
+-        RadioButton btnMeek = findViewById(R.id.btnBridgesMeek);
++        RadioButton btnMeek = (RadioButton) findViewById(R.id.btnBridgesMeek);
+         btnMeek.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -75,7 +75,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
+         });
+ 
+ 
+-        RadioButton btnNew = findViewById(R.id.btnBridgesNew);
++        RadioButton btnNew = (RadioButton) findViewById(R.id.btnBridgesNew);
+         btnNew.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+-- 
+2.17.1
+

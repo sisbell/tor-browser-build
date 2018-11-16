@@ -1,0 +1,46 @@
+From b82c86f18775d55fe60ace7bdb1a7b2f5d1f70c0 Mon Sep 17 00:00:00 2001
+From: Matthew Finkel <Matthew.Finkel@gmail.com>
+Date: Sat, 24 Nov 2018 04:46:49 +0000
+Subject: [PATCH 06/12] Bug 28051 - Don't use Orbot's LocaleHelper for locale
+ selection
+
+---
+ .../main/java/org/torproject/android/OrbotMainActivity.java  | 5 -----
+ .../org/torproject/android/settings/SettingsPreferences.java | 5 -----
+ 2 files changed, 10 deletions(-)
+
+diff --git a/app/src/main/java/org/torproject/android/OrbotMainActivity.java b/app/src/main/java/org/torproject/android/OrbotMainActivity.java
+index ff5dd120..b7d4c166 100644
+--- a/app/src/main/java/org/torproject/android/OrbotMainActivity.java
++++ b/app/src/main/java/org/torproject/android/OrbotMainActivity.java
+@@ -427,11 +427,6 @@ public class OrbotMainActivity extends AppCompatActivity
+         }
+     }
+ 
+-    @Override
+-    protected void attachBaseContext(Context base) {
+-        super.attachBaseContext(LocaleHelper.onAttach(base));
+-    }
+-
+    /*
+     * Create the UI Options Menu (non-Javadoc)
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+diff --git a/app/src/main/java/org/torproject/android/settings/SettingsPreferences.java b/app/src/main/java/org/torproject/android/settings/SettingsPreferences.java
+index c3b5189d..df85a9f6 100644
+--- a/app/src/main/java/org/torproject/android/settings/SettingsPreferences.java
++++ b/app/src/main/java/org/torproject/android/settings/SettingsPreferences.java
+@@ -47,11 +47,6 @@ public class SettingsPreferences
+         });
+     }
+ 
+-    @Override
+-    protected void attachBaseContext(Context base) {
+-        super.attachBaseContext(LocaleHelper.onAttach(base));
+-    }
+-
+     @Override
+     protected void onPause() {
+         //Language.setFromPreference(this, "pref_default_locale", true);
+-- 
+2.17.1
+
