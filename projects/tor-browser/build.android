@@ -9,10 +9,12 @@ cd /var/tmp/build
 
 mv $rootdir/[% c('input_files_by_name/https-everywhere') %] $ext_dir/https-everywhere-eff@eff.org.xpi
 mv $rootdir/[% c('input_files_by_name/noscript') %] $ext_dir/{73a6fe31-595d-460b-a920-fcc0f8843232}.xpi
-
+mv $rootdir/[% c('input_files_by_name/keystore') %] .
+ 
 zip -d $apk META-INF/\*
-zip -r $apk $ext_dir
+# Use same static time that firefox uses for files
+touch -t '0101100000' $ext_dir $ext_dir/*
+zip -r -X $apk $ext_dir
 
 # Sign a QA build. This apk is not a debug version and doesn't contain a debug flag in the manifest
-keytool -genkey -v -keystore qa.keystore -storepass android -alias androidqakey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Tor QA,O=Tor,C=US"
-jarsigner -verbose -digestalg SHA1 -sigalg MD5withRSA -keystore qa.keystore -signedjar $qa_apk $apk androidqakey -storepass android -keypass android
+faketime '10-Jan-01 00:00' jarsigner -verbose -digestalg SHA1 -sigalg MD5withRSA -keystore android-qa.keystore -signedjar $qa_apk $apk androidqakey -storepass android -keypass android
