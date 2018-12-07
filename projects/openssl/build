@@ -13,6 +13,12 @@ export CC='gcc -m32'
   ln -s $clangdir/bin/clang $clangdir/bin/x86_64-apple-darwin11-cc
   export CC="cc [% c("var/FLAGS") %]"
 [% END -%]
+[% IF c("var/android") -%]
+  export ANDROID_DEV=$ANDROID_NDK_HOME/arm
+  export CC=$ANDROID_DEV/bin/arm-linux-androideabi-gcc
+  export AR=$ANDROID_DEV/bin/arm-linux-androideabi-ar
+  export RANLIB=$ANDROID_DEV/bin/arm-linux-androideabi-ranlib
+[% END -%]
 ./Configure --prefix=$distdir [% c('var/configure_opts') %]
 make
 make install
