@@ -20,6 +20,10 @@ targets:
   osx-x86_64:
     var:
       configure_opts: --cross-compile-prefix=x86_64-apple-darwin11- darwin64-x86_64-cc enable-ec_nistp_64_gcc_128
+  android-armv7:
+    var:
+      # ANDROID_API should match the standalone_toolchain API in projects/android-toolchain/build file
+      configure_opts: android-armv7 -D__ANDROID_API__=16
 
 input_files:
   - project: container-image
