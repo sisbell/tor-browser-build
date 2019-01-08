@@ -1,0 +1,26 @@
+# vim: filetype=yaml sw=2
+filename: '[% project %]-[% c("version") %]-[% c("var/build_id") %].tar.gz'
+version: 1.0.0
+git_hash: 81c56270ba3e77c6e4ef1e8b251e2a89325c1d0c
+git_url: https://github.com/guardianproject/AndroidPluggableTransports.git
+git_submodule: 1
+var:
+  container:
+    use_container: 1
+  # this should be updated when the list of gradle dependencies is changed
+  gradle_dependencies_version: 1
+
+targets:
+  android-armv7:
+    var:
+      arch_deps:
+        - openjdk-8-jdk
+
+input_files:
+  - project: container-image
+  - name: '[% c("var/compiler") %]'
+    project: '[% c("var/compiler") %]'
+  - filename: transports.patch
+  - filename: 'gradle-dependencies-[% c("var/gradle_dependencies_version") %]'
+    name: gradle-dependencies
+    exec: '[% INCLUDE "fetch-gradle-dependencies" %]'
