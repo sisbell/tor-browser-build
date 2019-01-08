@@ -1,0 +1,96 @@
+diff --git a/APTDispatchLibrary-MeekObfs4-Full/build.gradle b/APTDispatchLibrary-MeekObfs4-Full/build.gradle
+index d0a3903..59bf264 100644
+--- a/APTDispatchLibrary-MeekObfs4-Full/build.gradle
++++ b/APTDispatchLibrary-MeekObfs4-Full/build.gradle
+@@ -5,11 +5,11 @@ repositories {
+ }
+ 
+ android {
+-    compileSdkVersion 27
+-    buildToolsVersion '28.0.3'
++    compileSdkVersion 26 
++    buildToolsVersion '26.0.2'
+     defaultConfig {
+         minSdkVersion 16
+-        targetSdkVersion 27
++        targetSdkVersion 26
+         versionCode 1
+         versionName "1.0"
+         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+diff --git a/APTDispatchLibrary/build.gradle b/APTDispatchLibrary/build.gradle
+index 25b7efc..03ebb83 100644
+--- a/APTDispatchLibrary/build.gradle
++++ b/APTDispatchLibrary/build.gradle
+@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
+ 
+ 
+ android {
+-    compileSdkVersion 27
+-    buildToolsVersion '28.0.3'
++    compileSdkVersion 26
++    buildToolsVersion '26.0.2'
+     defaultConfig {
+         minSdkVersion 16
+-        targetSdkVersion 27
++        targetSdkVersion 26
+         versionCode 1
+         versionName "1.0"
+         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+diff --git a/build.gradle b/build.gradle
+index ecd45f4..04cd5f9 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -4,9 +4,10 @@ buildscript {
+     repositories {
+         google()
+         jcenter()
++        maven { url System.getenv("GRADLE_MAVEN_REPO") }
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.0.1'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+@@ -17,6 +18,7 @@ allprojects {
+     repositories {
+         google()
+         jcenter()
++        maven { url System.getenv("GRADLE_MAVEN_REPO") }
+     }
+ }
+ 
+diff --git a/jsocksAndroid/build.gradle b/jsocksAndroid/build.gradle
+index f1a544e..84be7e7 100644
+--- a/jsocksAndroid/build.gradle
++++ b/jsocksAndroid/build.gradle
+@@ -1,12 +1,12 @@
+ apply plugin: 'com.android.library'
+ 
+ android {
+-    compileSdkVersion 27
+-    buildToolsVersion '28.0.3'
++    compileSdkVersion 26
++    buildToolsVersion '26.0.2'
+ 
+     defaultConfig {
+         minSdkVersion 16
+-        targetSdkVersion 27
++        targetSdkVersion 26
+     }
+ 
+     buildTypes {
+diff --git a/settings.gradle b/settings.gradle
+index 2b02a83..90d2685 100644
+--- a/settings.gradle
++++ b/settings.gradle
+@@ -1,9 +1,4 @@
+ include ':goptbundle'
+ include ':jsocksAndroid'
+ include ':APTDispatchLibrary'
+-include ':APTDispatchLibrary-SampleTransport'
+ include ':APTDispatchLibrary-MeekObfs4-Full'
+-include ':APTDispatchLibrary-MeekObfs4-Legacy'
+-include ':APTDispatchLibrary-Shadowsocks-Full'
+-include ':APTDispatchLibrary-Snowflake'
+-include ':sample'
