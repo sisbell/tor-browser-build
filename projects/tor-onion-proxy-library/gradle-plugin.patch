@@ -1,0 +1,45 @@
+diff --git a/android/build.gradle b/android/build.gradle
+index bb56685..84870b9 100644
+--- a/android/build.gradle
++++ b/android/build.gradle
+@@ -8,9 +8,10 @@ buildscript {
+         mavenCentral()
+         google()
+         jcenter()
++        maven { url System.getenv("GRADLE_MAVEN_REPO") }
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.2.1'
++        classpath 'com.android.tools.build:gradle:3.0.1'
+     }
+ }
+ 
+@@ -84,5 +85,6 @@ repositories {
+     google()
+     jcenter()
+     maven { url "https://raw.githubusercontent.com/guardianproject/gpmaven/master" }
++    maven { url System.getenv("GRADLE_MAVEN_REPO") }
+ 
+ }
+diff --git a/gradle/wrapper/gradle-wrapper.properties b/gradle/wrapper/gradle-wrapper.properties
+index ea720f9..f16d266 100644
+--- a/gradle/wrapper/gradle-wrapper.properties
++++ b/gradle/wrapper/gradle-wrapper.properties
+@@ -2,4 +2,4 @@ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.6-bin.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-4.1-bin.zip
+diff --git a/universal/build.gradle b/universal/build.gradle
+index e07bf15..62f15eb 100644
+--- a/universal/build.gradle
++++ b/universal/build.gradle
+@@ -8,6 +8,7 @@ repositories {
+     mavenLocal()
+     mavenCentral()
+     jcenter()
++    maven { url System.getenv("GRADLE_MAVEN_REPO") }
+ }
+ 
+ dependencies {
