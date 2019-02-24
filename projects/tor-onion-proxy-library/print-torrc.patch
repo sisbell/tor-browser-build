@@ -1,0 +1,12 @@
+diff --git a/universal/src/main/java/com/msopentech/thali/toronionproxy/OnionProxyManager.java b/universal/src/main/java/com/msopentech/thali/toronionproxy/OnionProxyManager.java
+index 87536ca..8f08520 100644
+--- a/universal/src/main/java/com/msopentech/thali/toronionproxy/OnionProxyManager.java
++++ b/universal/src/main/java/com/msopentech/thali/toronionproxy/OnionProxyManager.java
+@@ -360,6 +360,7 @@ public class OnionProxyManager {
+         cookieAuthFile.delete();
+         if(!cookieAuthFile.getParentFile().exists()) cookieAuthFile.getParentFile().mkdirs();
+ 
++        LOG.info(new String(FileUtilities.read(torrc())));
+         String pid = onionProxyContext.getProcessId();
+         String[] cmd = {torExecutable().getAbsolutePath(), "-f", torrc().getAbsolutePath(), OWNER, pid};
+         ProcessBuilder processBuilder = new ProcessBuilder(cmd);
