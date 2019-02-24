@@ -1,0 +1,105 @@
+diff --git a/build.gradle b/build.gradle
+index 178278e..d80d0b5 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -4,6 +4,7 @@ buildscript {
+     repositories {
+         google()
+         jcenter()
++        maven { url System.getenv("GRADLE_MAVEN_REPO") }
+     }
+     dependencies {
+         classpath "com.android.tools.build:gradle:${androidplugin}"
+@@ -19,6 +20,7 @@ allprojects {
+         jcenter()
+         maven { url "https://jitpack.io" }
+         maven { url "https://raw.githubusercontent.com/guardianproject/gpmaven/master" }
++        maven { url System.getenv("GRADLE_MAVEN_REPO") }
+     }
+ }
+ 
+diff --git a/jsocksAndroid/build.gradle b/jsocksAndroid/build.gradle
+index 2858cb1..4398024 100644
+--- a/jsocksAndroid/build.gradle
++++ b/jsocksAndroid/build.gradle
+@@ -20,12 +20,5 @@ android {
+             minSdkVersion 16
+             versionNameSuffix "-sdk26"
+         }
+-        sdkVer28 {
+-            dimension "sdk"
+-            compileSdkVersion 28
+-            targetSdkVersion 28
+-            minSdkVersion 21
+-            versionNameSuffix "-sdk28"
+-        }
+     }
+ }
+diff --git a/service/build.gradle b/service/build.gradle
+index 31f4b9e..197ab93 100644
+--- a/service/build.gradle
++++ b/service/build.gradle
+@@ -13,13 +13,6 @@ android {
+         }
+     }
+ 
+-    externalNativeBuild {
+-        ndkBuild {
+-            path "src/main/jni/Android.mk"
+-            buildStagingDirectory "./outputs/ndk-build"
+-        }
+-    }
+-
+     lintOptions {
+         abortOnError false
+     }
+@@ -34,20 +27,13 @@ android {
+             minSdkVersion 16
+             versionNameSuffix "-sdk26"
+         }
+-
+-        sdkVer28 {
+-            dimension "sdk"
+-            compileSdkVersion 28
+-            versionNameSuffix "-sdk28"
+-        }
+     }
+ }
+ 
+ dependencies {
+     implementation project(':jsocksAndroid')
+     compileOnly fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+-    sdkVer28Implementation 'com.android.support:appcompat-v7:28.0.0'
+-    sdkVer26Implementation 'com.android.support:appcompat-v7:26.1.0'
++    sdkVer26Implementation 'com.android.support:appcompat-v7:23.4.0'
+     implementation 'net.freehaven.tor.control:jtorctl:0.2'
+     implementation 'org.torproject:tor-android-binary:0.3.4.9'
+     implementation 'org.slf4j:slf4j-api:1.7.25'
+diff --git a/service/src/main/java/org/torproject/android/service/TorService.java b/service/src/main/java/org/torproject/android/service/TorService.java
+index d280a29..beb2b02 100644
+--- a/service/src/main/java/org/torproject/android/service/TorService.java
++++ b/service/src/main/java/org/torproject/android/service/TorService.java
+@@ -12,7 +12,10 @@ import android.net.ConnectivityManager;
+ import android.net.NetworkInfo;
+ import android.os.Build;
+ import android.os.IBinder;
+-import android.support.annotation.RequiresApi;
++// Not available in 23.4.0
++// https://developer.android.com/reference/android/support/annotation/RequiresApi
++//import android.support.annotation.RequiresApi;
++import android.annotation.TargetApi;
+ import android.text.TextUtils;
+ import android.util.Log;
+ import com.msopentech.thali.android.toronionproxy.AndroidOnionProxyManager;
+@@ -93,7 +96,10 @@ public final class TorService extends Service implements TorServiceConstants, Or
+         startService(intentVpn);
+     }
+ 
+-    @RequiresApi(api = Build.VERSION_CODES.O)
++    // Use TargetApi until we use a support library version that adds the
++    // RequriesApi annotation
++    //@RequiresApi(api = Build.VERSION_CODES.O)
++    @TargetApi(value = Build.VERSION_CODES.O)
+     private void createNotificationChannel(String appName, String appDescription) {
+         int importance = NotificationManager.IMPORTANCE_LOW;
+         NotificationChannel mChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, appName,
