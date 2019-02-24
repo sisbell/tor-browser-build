@@ -1,0 +1,87 @@
+diff --git a/build.gradle b/build.gradle
+index 178278e..d80d0b5 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -4,6 +4,7 @@ buildscript {
+     repositories {
+         google()
+         jcenter()
++        maven { url System.getenv("GRADLE_MAVEN_REPO") }
+     }
+     dependencies {
+         classpath "com.android.tools.build:gradle:${androidplugin}"
+@@ -19,6 +20,7 @@ allprojects {
+         jcenter()
+         maven { url "https://jitpack.io" }
+         maven { url "https://raw.githubusercontent.com/guardianproject/gpmaven/master" }
++        maven { url System.getenv("GRADLE_MAVEN_REPO") }
+     }
+ }
+ 
+diff --git a/jsocksAndroid/build.gradle b/jsocksAndroid/build.gradle
+index 2858cb1..4398024 100644
+--- a/jsocksAndroid/build.gradle
++++ b/jsocksAndroid/build.gradle
+@@ -20,12 +20,5 @@ android {
+             minSdkVersion 16
+             versionNameSuffix "-sdk26"
+         }
+-        sdkVer28 {
+-            dimension "sdk"
+-            compileSdkVersion 28
+-            targetSdkVersion 28
+-            minSdkVersion 21
+-            versionNameSuffix "-sdk28"
+-        }
+     }
+ }
+diff --git a/service/build.gradle b/service/build.gradle
+index 3aec89b..0177f06 100644
+--- a/service/build.gradle
++++ b/service/build.gradle
+@@ -6,20 +6,17 @@ android {
+         versionName "1.0"
+         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+         consumerProguardFiles 'proguard-rules.pro'
++        ndk {
++            abiFilters "armeabi-v7a"
++        }
++
+     }
+     buildTypes {
+         release {
+             minifyEnabled false
+         }
+     }
+-
+-    externalNativeBuild {
+-        ndkBuild {
+-            path "src/main/jni/Android.mk"
+-            buildStagingDirectory "./outputs/ndk-build"
+-        }
+-    }
+-
++    
+     lintOptions {
+         abortOnError false
+     }
+@@ -34,19 +31,12 @@ android {
+             minSdkVersion 16
+             versionNameSuffix "-sdk26"
+         }
+-
+-        sdkVer28 {
+-            dimension "sdk"
+-            compileSdkVersion 28
+-            versionNameSuffix "-sdk28"
+-        }
+     }
+ }
+ 
+ dependencies {
+     implementation project(':jsocksAndroid')
+     compileOnly fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+-    sdkVer28Implementation 'com.android.support:appcompat-v7:28.0.0'
+     sdkVer26Implementation 'com.android.support:appcompat-v7:26.1.0'
+     implementation 'net.freehaven.tor.control:jtorctl:0.2'
+     implementation 'org.torproject:tor-android-binary:0.3.5.6-rc'
