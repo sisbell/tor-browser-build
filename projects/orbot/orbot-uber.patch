@@ -1,128 +1,829 @@
-From d8e44193ca75fe1317b2fdd178fa26657bb50422 Mon Sep 17 00:00:00 2001
-From: Matthew Finkel <Matthew.Finkel@gmail.com>
-Date: Sat, 24 Nov 2018 04:55:12 +0000
-Subject: [PATCH 10/13] Bug 28051 - Rename Orbot as Tor Browser
-
----
- app/src/main/res/values-ay/strings.xml              | 2 +-
- app/src/main/res/values-az/strings.xml              | 2 +-
- app/src/main/res/values-ca/strings.xml              | 2 +-
- app/src/main/res/values-cs-rCZ/strings.xml          | 2 +-
- app/src/main/res/values-cs/strings.xml              | 2 +-
- app/src/main/res/values-cy/strings.xml              | 2 +-
- app/src/main/res/values-da/strings.xml              | 2 +-
- app/src/main/res/values-de/strings.xml              | 2 +-
- app/src/main/res/values-el/strings.xml              | 2 +-
- app/src/main/res/values-en-rGB/strings.xml          | 2 +-
- app/src/main/res/values-eo/strings.xml              | 2 +-
- app/src/main/res/values-es-rAR/strings.xml          | 2 +-
- app/src/main/res/values-es/strings.xml              | 2 +-
- app/src/main/res/values-et/strings.xml              | 2 +-
- app/src/main/res/values-eu/strings.xml              | 2 +-
- app/src/main/res/values-fi/strings.xml              | 2 +-
- app/src/main/res/values-fr-rFR/strings.xml          | 2 +-
- app/src/main/res/values-fr/strings.xml              | 2 +-
- app/src/main/res/values-gl/strings.xml              | 2 +-
- app/src/main/res/values-he/strings.xml              | 2 +-
- app/src/main/res/values-hr/strings.xml              | 2 +-
- app/src/main/res/values-hu/strings.xml              | 2 +-
- app/src/main/res/values-hy-rAM/strings.xml          | 2 +-
- app/src/main/res/values-id/strings.xml              | 2 +-
- app/src/main/res/values-in-rID/strings.xml          | 2 +-
- app/src/main/res/values-in/strings.xml              | 2 +-
- app/src/main/res/values-is/strings.xml              | 2 +-
- app/src/main/res/values-it/strings.xml              | 2 +-
- app/src/main/res/values-iw/strings.xml              | 2 +-
- app/src/main/res/values-ja/strings.xml              | 2 +-
- app/src/main/res/values-ko/strings.xml              | 2 +-
- app/src/main/res/values-lt/strings.xml              | 2 +-
- app/src/main/res/values-lv/strings.xml              | 2 +-
- app/src/main/res/values-mk/strings.xml              | 2 +-
- app/src/main/res/values-mr-rIN/strings.xml          | 2 +-
- app/src/main/res/values-ms-rMY/strings.xml          | 2 +-
- app/src/main/res/values-ms/strings.xml              | 2 +-
- app/src/main/res/values-nb/strings.xml              | 2 +-
- app/src/main/res/values-nl/strings.xml              | 2 +-
- app/src/main/res/values-pl/strings.xml              | 2 +-
- app/src/main/res/values-pt-rBR/strings.xml          | 2 +-
- app/src/main/res/values-pt-rPT/strings.xml          | 2 +-
- app/src/main/res/values-pt/strings.xml              | 2 +-
- app/src/main/res/values-ro/strings.xml              | 2 +-
- app/src/main/res/values-rs-rAR/strings.xml          | 2 +-
- app/src/main/res/values-ru/strings.xml              | 2 +-
- app/src/main/res/values-si-rLK/strings.xml          | 2 +-
- app/src/main/res/values-sk/strings.xml              | 2 +-
- app/src/main/res/values-sl/strings.xml              | 2 +-
- app/src/main/res/values-sn/strings.xml              | 2 +-
- app/src/main/res/values-sq/strings.xml              | 2 +-
- app/src/main/res/values-sv/strings.xml              | 2 +-
- app/src/main/res/values-th/strings.xml              | 2 +-
- app/src/main/res/values-tl/strings.xml              | 2 +-
- app/src/main/res/values-tr/strings.xml              | 2 +-
- app/src/main/res/values-uk/strings.xml              | 2 +-
- app/src/main/res/values-uz/strings.xml              | 2 +-
- app/src/main/res/values-vi/strings.xml              | 2 +-
- app/src/main/res/values-zh-rCN/strings.xml          | 2 +-
- app/src/main/res/values-zh-rTW/strings.xml          | 2 +-
- app/src/main/res/values/strings.xml                 | 2 +-
- orbotservice/src/main/res/values-az/strings.xml     | 2 +-
- orbotservice/src/main/res/values-ca/strings.xml     | 2 +-
- orbotservice/src/main/res/values-cs-rCZ/strings.xml | 2 +-
- orbotservice/src/main/res/values-cs/strings.xml     | 2 +-
- orbotservice/src/main/res/values-cy/strings.xml     | 2 +-
- orbotservice/src/main/res/values-da/strings.xml     | 2 +-
- orbotservice/src/main/res/values-de/strings.xml     | 2 +-
- orbotservice/src/main/res/values-el/strings.xml     | 2 +-
- orbotservice/src/main/res/values-eo/strings.xml     | 2 +-
- orbotservice/src/main/res/values-es-rAR/strings.xml | 2 +-
- orbotservice/src/main/res/values-es/strings.xml     | 2 +-
- orbotservice/src/main/res/values-et/strings.xml     | 2 +-
- orbotservice/src/main/res/values-eu/strings.xml     | 2 +-
- orbotservice/src/main/res/values-fi/strings.xml     | 2 +-
- orbotservice/src/main/res/values-fr-rFR/strings.xml | 2 +-
- orbotservice/src/main/res/values-fr/strings.xml     | 2 +-
- orbotservice/src/main/res/values-gl/strings.xml     | 2 +-
- orbotservice/src/main/res/values-he/strings.xml     | 2 +-
- orbotservice/src/main/res/values-hi/strings.xml     | 2 +-
- orbotservice/src/main/res/values-hr/strings.xml     | 2 +-
- orbotservice/src/main/res/values-hu/strings.xml     | 2 +-
- orbotservice/src/main/res/values-id/strings.xml     | 2 +-
- orbotservice/src/main/res/values-in-rID/strings.xml | 2 +-
- orbotservice/src/main/res/values-in/strings.xml     | 2 +-
- orbotservice/src/main/res/values-is/strings.xml     | 2 +-
- orbotservice/src/main/res/values-it/strings.xml     | 2 +-
- orbotservice/src/main/res/values-iw/strings.xml     | 2 +-
- orbotservice/src/main/res/values-ja/strings.xml     | 2 +-
- orbotservice/src/main/res/values-ko/strings.xml     | 2 +-
- orbotservice/src/main/res/values-lv/strings.xml     | 2 +-
- orbotservice/src/main/res/values-mk/strings.xml     | 2 +-
- orbotservice/src/main/res/values-ms-rMY/strings.xml | 2 +-
- orbotservice/src/main/res/values-ms/strings.xml     | 2 +-
- orbotservice/src/main/res/values-nb/strings.xml     | 2 +-
- orbotservice/src/main/res/values-nl/strings.xml     | 2 +-
- orbotservice/src/main/res/values-pl/strings.xml     | 2 +-
- orbotservice/src/main/res/values-pt-rBR/strings.xml | 2 +-
- orbotservice/src/main/res/values-pt-rPT/strings.xml | 2 +-
- orbotservice/src/main/res/values-pt/strings.xml     | 2 +-
- orbotservice/src/main/res/values-ro/strings.xml     | 2 +-
- orbotservice/src/main/res/values-rs-rAR/strings.xml | 2 +-
- orbotservice/src/main/res/values-ru/strings.xml     | 2 +-
- orbotservice/src/main/res/values-si-rLK/strings.xml | 2 +-
- orbotservice/src/main/res/values-sk/strings.xml     | 2 +-
- orbotservice/src/main/res/values-sl/strings.xml     | 2 +-
- orbotservice/src/main/res/values-sn/strings.xml     | 2 +-
- orbotservice/src/main/res/values-sv/strings.xml     | 2 +-
- orbotservice/src/main/res/values-th/strings.xml     | 2 +-
- orbotservice/src/main/res/values-tl/strings.xml     | 2 +-
- orbotservice/src/main/res/values-tr/strings.xml     | 2 +-
- orbotservice/src/main/res/values-uk/strings.xml     | 2 +-
- orbotservice/src/main/res/values-uz/strings.xml     | 2 +-
- orbotservice/src/main/res/values-vi/strings.xml     | 2 +-
- orbotservice/src/main/res/values-zh-rCN/strings.xml | 2 +-
- orbotservice/src/main/res/values-zh-rTW/strings.xml | 2 +-
- orbotservice/src/main/res/values/strings.xml        | 2 +-
- 117 files changed, 117 insertions(+), 117 deletions(-)
-
+diff --git a/app/build.gradle b/app/build.gradle
+index ba57f72c..4e33472c 100644
+--- a/app/build.gradle
++++ b/app/build.gradle
+@@ -1,12 +1,16 @@
+-apply plugin: 'com.android.application'
++// Build it as a library, instead of an app
++apply plugin: 'com.android.library'
+ 
+ android {
+-    compileSdkVersion 27
+-    buildToolsVersion '27.0.3'
++    // Match Fennec's version
++    compileSdkVersion 26
++    buildToolsVersion '26.0.2'
+     defaultConfig {
+-        applicationId "org.torproject.android"
++        // Libraries can't have an applicationId
++        //applicationId "org.torproject.android"
+         minSdkVersion 16
+-        targetSdkVersion 27
++        // Match Fennec's version
++        targetSdkVersion 26
+     }
+     lintOptions {
+         checkReleaseBuilds false
+@@ -17,7 +21,8 @@ android {
+     buildTypes {
+         release {
+             minifyEnabled true
+-            shrinkResources true
++            // Match Fennec
++            shrinkResources false
+             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+         }
+     }
+@@ -32,8 +37,10 @@ android {
+         fullperm {
+             dimension "free"
+             minSdkVersion 16
+-            applicationId 'org.torproject.android'
+-            targetSdkVersion 27
++            // Libraries can't have an applicationId
++            //applicationId 'org.torproject.android'
++            // Match Fennec's versions
++            targetSdkVersion 26
+             versionCode 16050100
+             versionName '16.0.5-RC-1-tor-0.3.4.9'
+             archivesBaseName = "Orbot-$versionName"
+@@ -69,10 +76,16 @@ android {
+ dependencies {
+ //    implementation 'com.github.delight-im:Android-Languages:v1.0.1'
+     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+-    implementation project(':orbotservice')
+-    implementation 'com.android.support:design:27.1.1'
++    // Match Fennec's ANDROID_SUPPORT_LIBRARY_VERSION
++    implementation 'com.android.support:design:23.4.0'
+     implementation 'pl.bclogic:pulsator4droid:1.0.3'
+-    implementation 'com.github.apl-devs:appintro:v4.2.2'
+-    implementation 'com.github.javiersantos:AppUpdater:2.6.4'
+-
++    // These require higher versions of ANDROID_SUPPORT_LIBRARY_VERSION
++    //implementation 'com.github.apl-devs:appintro:v4.2.2'
++    //implementation 'com.github.javiersantos:AppUpdater:2.6.4'
++    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
++    implementation 'com.android.support:appcompat-v7:26.1.0'
++    implementation 'net.freehaven.tor.control:jtorctl:0.2'
++    implementation 'org.torproject:tor-android-binary:0.3.5.6-rc'
++    implementation 'org.slf4j:slf4j-api:1.7.25'
++    implementation 'org.slf4j:slf4j-android:1.7.25'
+ }
+diff --git a/app/proguard-rules.txt b/app/proguard-rules.txt
+index b1120f82..3a8d4ef9 100644
+--- a/app/proguard-rules.txt
++++ b/app/proguard-rules.txt
+@@ -11,4 +11,12 @@
+ -keep class okhttp3.** { *; }
+ -keep interface okhttp3.** { *; }
+ -dontwarn okhttp3.**
+--dontwarn okio.**
+\ No newline at end of file
++-dontwarn okio.**
++
++# This method is called in the main Application (which is now
++# Fennec's GeckoApplication), so we must explicitly keep this
++# or else proguard sees it is not used when then library is
++# compiled and prunes it.
++-keep class org.torproject.android.settings.Languages {
++    void setup(java.lang.Class, int);
++}
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+index 56db8266..3c6262c2 100644
+--- a/app/src/main/AndroidManifest.xml
++++ b/app/src/main/AndroidManifest.xml
+@@ -15,15 +15,13 @@
+     <uses-feature android:name="android.hardware.touchscreen"
+         android:required="false" />
+ 
++    <!-- Delete Orbot's name, icon, and label, so they don't conflict with the app -->
++    <!-- Fennec enables hardwareAccelerated= -->
+     <application
+-        android:name=".OrbotApp"
+         android:allowBackup="false"
+         android:allowClearUserData="true"
+         android:configChanges="locale|orientation|screenSize"
+         android:description="@string/app_description"
+-        android:hardwareAccelerated="false"
+-        android:icon="@drawable/ic_launcher"
+-        android:label="@string/app_name"
+         android:theme="@style/DefaultTheme"
+         tools:replace="android:allowBackup"
+         >
+@@ -31,10 +29,10 @@
+             android:name=".OrbotMainActivity"
+             android:excludeFromRecents="true"
+             android:launchMode="singleTop">
++            <!-- When Orbot has android.intent.category.LAUNCHER, then a
++                 launcher icon is added on the app menu. We don't want this. -->
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+-
+-                <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+             <intent-filter>
+                 <action android:name="android.intent.action.VIEW" />
+@@ -57,17 +55,20 @@
+         </activity>
+ 
+         <!--         This is for ensuring the background service still runs when/if the app is swiped away -->
++        <!-- We want the app and background service to die when the user swipes away the app,
++             so disable this activity -->
+         <activity
+             android:name=".service.util.DummyActivity"
+             android:allowTaskReparenting="true"
+             android:alwaysRetainTaskState="false"
+             android:clearTaskOnLaunch="true"
+-            android:enabled="true"
++            android:enabled="false"
+             android:excludeFromRecents="true"
+             android:finishOnTaskLaunch="true"
+             android:noHistory="true"
+             android:stateNotNeeded="true"
+             android:theme="@android:style/Theme.Translucent" />
++        <!-- Don't export the VPN functionality, we don't want to use it -->
+         <activity
+             android:name=".vpn.VPNEnableActivity"
+             android:exported="false"
+@@ -85,26 +86,29 @@
+             android:enabled="true"
+             android:permission="android.permission.BIND_VPN_SERVICE"
+             android:stopWithTask="false"></service>
++        <!-- Disable the VPN functionality, we don't want to use it -->
+         <service
+             android:name=".service.vpn.TorVpnService"
+-            android:enabled="true"
++            android:enabled="false"
+             android:permission="android.permission.BIND_VPN_SERVICE">
+             <intent-filter>
+                 <action android:name="android.net.VpnService" />
+             </intent-filter>
+         </service>
+ 
++        <!-- Don't let other apps start our Orbot -->
+         <receiver
+             android:name=".service.StartTorReceiver"
+-            android:exported="true">
++            android:exported="false">
+             <intent-filter>
+                 <action android:name="org.torproject.android.intent.action.START" />
+             </intent-filter>
+         </receiver>
++        <!-- Don't automatically start our Orbot when the device boots -->
+         <receiver
+             android:name=".OnBootReceiver"
+-            android:enabled="true"
+-            android:exported="true">
++            android:enabled="false"
++            android:exported="false">
+             <intent-filter>
+                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+ 
+@@ -131,13 +135,15 @@
+                 android:value=".OrbotMainActivity" />
+         </activity>
+ 
++        <!-- Modify the Content Provider name so it doesn't collide with Orbot (when Orbot is installed, too).
++             TBA fails while starting when this happens -->
+         <provider
+-            android:name=".ui.hiddenservices.providers.HSContentProvider"
+-            android:authorities="org.torproject.android.ui.hiddenservices.providers"
++            android:name="org.torproject.torbrowser.ui.hiddenservices.providers.HSContentProvider"
++            android:authorities="org.torproject.torbrowser.ui.hiddenservices.providers"
+             android:exported="false" />
+         <provider
+             android:name="android.support.v4.content.FileProvider"
+-            android:authorities="org.torproject.android.ui.hiddenservices.storage"
++            android:authorities="org.torproject.torbrowser.ui.hiddenservices.storage"
+             android:exported="false"
+             android:grantUriPermissions="true">
+             <meta-data
+@@ -154,13 +160,16 @@
+                 android:value=".OrbotMainActivity" />
+         </activity>
+ 
+-        <activity android:name=".ui.onboarding.OnboardingActivity"/>
++        <!-- Disable the Onboarding activity, because it depends on a library that
++             depends on a newer version of the Android Support Library -->
++        <!--<activity android:name=".ui.onboarding.OnboardingActivity"/>-->
+         <activity android:name=".ui.onboarding.BridgeWizardActivity"/>
+ 
++        <!-- Modify the Content Provider name -->
+         <provider
+-            android:name=".ui.hiddenservices.providers.CookieContentProvider"
+-            android:authorities="org.torproject.android.ui.hiddenservices.providers.cookie"
++            android:name="org.torproject.torbrowser.ui.hiddenservices.providers.CookieContentProvider"
++            android:authorities="org.torproject.torbrowser.ui.hiddenservices.providers.cookie"
+             android:exported="false" />
+     </application>
+ 
+-</manifest>
+\ No newline at end of file
++</manifest>
+diff --git a/app/src/main/java/org/torproject/android/OrbotApp.java b/app/src/main/java/org/torproject/android/OrbotApp.java
+index 7279c8e2..291b0456 100644
+--- a/app/src/main/java/org/torproject/android/OrbotApp.java
++++ b/app/src/main/java/org/torproject/android/OrbotApp.java
+@@ -18,10 +18,6 @@ import android.support.v4.app.NotificationCompat;
+ import android.util.Log;
+ import android.widget.RemoteViews;
+ 
+-import com.github.javiersantos.appupdater.AppUpdater;
+-import com.github.javiersantos.appupdater.enums.Display;
+-import com.github.javiersantos.appupdater.enums.UpdateFrom;
+-
+ import org.torproject.android.service.OrbotConstants;
+ import org.torproject.android.service.TorEventHandler;
+ import org.torproject.android.service.TorService;
+@@ -49,11 +45,6 @@ public class OrbotApp extends Application implements OrbotConstants
+ 
+         //Language.setFromPreference(this, "pref_default_locale");
+ 
+-        //check for updates via github, since it is unlikely to be blocked; notify the user of places where upgrades can be found
+-        new AppUpdater(this)
+-                .setUpdateFrom(UpdateFrom.JSON)
+-                .setUpdateJSON("https://raw.githubusercontent.com/n8fr8/orbot/master/update.json")
+-                .setDisplay(Display.NOTIFICATION).start();
+     }
+ 
+     @Override
+diff --git a/app/src/main/java/org/torproject/android/OrbotMainActivity.java b/app/src/main/java/org/torproject/android/OrbotMainActivity.java
+index e18711b1..e011817e 100644
+--- a/app/src/main/java/org/torproject/android/OrbotMainActivity.java
++++ b/app/src/main/java/org/torproject/android/OrbotMainActivity.java
+@@ -24,17 +24,15 @@ import org.torproject.android.service.TorService;
+ import org.torproject.android.service.TorServiceConstants;
+ import org.torproject.android.service.util.TorServiceUtils;
+ import org.torproject.android.settings.Languages;
+-import org.torproject.android.settings.LocaleHelper;
+ import org.torproject.android.settings.SettingsPreferences;
+ import org.torproject.android.ui.AppManagerActivity;
+ import org.torproject.android.ui.Rotate3dAnimation;
+ import org.torproject.android.ui.onboarding.BridgeWizardActivity;
+-import org.torproject.android.ui.onboarding.OnboardingActivity;
+ import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
+ import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
+ import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
+ import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
+-import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
++import org.torproject.torbrowser.ui.hiddenservices.providers.HSContentProvider;
+ import org.torproject.android.vpn.VPNEnableActivity;
+ 
+ import android.annotation.SuppressLint;
+@@ -197,16 +195,6 @@ public class OrbotMainActivity extends AppCompatActivity
+                 new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
+ 
+         boolean showFirstTime = mPrefs.getBoolean("connect_first_time", true);
+-
+-        if (showFirstTime)
+-        {
+-            Editor pEdit = mPrefs.edit();
+-            pEdit.putBoolean("connect_first_time", false);
+-            pEdit.commit();
+-            startActivity(new Intent(this,OnboardingActivity.class));
+-        }
+-
+-
+     }
+ 
+ 	private void sendIntentToService(final String action) {
+@@ -438,11 +426,6 @@ public class OrbotMainActivity extends AppCompatActivity
+         }
+     }
+ 
+-    @Override
+-    protected void attachBaseContext(Context base) {
+-        super.attachBaseContext(LocaleHelper.onAttach(base));
+-    }
+-
+    /*
+     * Create the UI Options Menu (non-Javadoc)
+     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+@@ -569,7 +552,9 @@ public class OrbotMainActivity extends AppCompatActivity
+      * still exists
+      **/
+     private void doExit() {
+-        stopTor();
++        // Don't stop Tor when we exit Orbot. Let Fennec take care of
++        // that when we really exit the app.
++        //stopTor();
+ 
+         // Kill all the wizard activities
+         setResult(RESULT_CLOSE_ALL);
+@@ -870,7 +855,7 @@ public class OrbotMainActivity extends AppCompatActivity
+                     @Override
+                     public void onClick(DialogInterface dialog, int which) {
+ 
+-                        startActivity(OnboardingActivity.getInstallIntent(TorServiceConstants.BROWSER_APP_USERNAME,OrbotMainActivity.this));
++                        dialog.cancel();
+ 
+ 
+                     }
+@@ -1139,6 +1124,11 @@ public class OrbotMainActivity extends AppCompatActivity
+ 
+             mTxtOrbotLog.append(torServiceMsg + '\n');
+ 
++            // Return to the browser when we reach 100% bootstrapped
++            if (torServiceMsg.contains(TorServiceConstants.TOR_CONTROL_PORT_MSG_BOOTSTRAP_DONE)) {
++                finish();
++            }
++
+         }
+ 
+         if (torStatus == null || newTorStatus.equals(torStatus)) {
+@@ -1401,6 +1391,7 @@ public class OrbotMainActivity extends AppCompatActivity
+             iv.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
++                    // This should never be false, because we are the browser now.
+                     if (!appInstalledOrNot(TorServiceConstants.BROWSER_APP_USERNAME))
+                         promptInstallOrfox();
+                     else
+diff --git a/app/src/main/java/org/torproject/android/settings/SettingsPreferences.java b/app/src/main/java/org/torproject/android/settings/SettingsPreferences.java
+index c3b5189d..0e7edcd8 100644
+--- a/app/src/main/java/org/torproject/android/settings/SettingsPreferences.java
++++ b/app/src/main/java/org/torproject/android/settings/SettingsPreferences.java
+@@ -24,7 +24,8 @@ public class SettingsPreferences
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+ 
+-        addPreferencesFromResource(R.xml.preferences);
++        // Rename preferences so it doesn't conflict with Fennec
++        addPreferencesFromResource(R.xml.orbot_preferences);
+         getPreferenceManager().setSharedPreferencesMode(Context.MODE_MULTI_PROCESS);
+ 
+         prefLocale = (ListPreference) findPreference("pref_default_locale");
+@@ -47,11 +48,6 @@ public class SettingsPreferences
+         });
+     }
+ 
+-    @Override
+-    protected void attachBaseContext(Context base) {
+-        super.attachBaseContext(LocaleHelper.onAttach(base));
+-    }
+-
+     @Override
+     protected void onPause() {
+         //Language.setFromPreference(this, "pref_default_locale", true);
+diff --git a/app/src/main/java/org/torproject/android/ui/AppManagerActivity.java b/app/src/main/java/org/torproject/android/ui/AppManagerActivity.java
+index 2f60a40c..5bdcd504 100644
+--- a/app/src/main/java/org/torproject/android/ui/AppManagerActivity.java
++++ b/app/src/main/java/org/torproject/android/ui/AppManagerActivity.java
+@@ -58,8 +58,8 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
+         this.setContentView(R.layout.layout_apps);
+         setTitle(R.string.apps_mode);
+         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+-        listApps = findViewById(R.id.applistview);
+-        progressBar = findViewById(R.id.progressBar);
++        listApps = (GridView) findViewById(R.id.applistview);
++        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+     }
+ 
+     /*
+diff --git a/app/src/main/java/org/torproject/android/ui/hiddenservices/ClientCookiesActivity.java b/app/src/main/java/org/torproject/android/ui/hiddenservices/ClientCookiesActivity.java
+index e6939800..dd3a54e0 100644
+--- a/app/src/main/java/org/torproject/android/ui/hiddenservices/ClientCookiesActivity.java
++++ b/app/src/main/java/org/torproject/android/ui/hiddenservices/ClientCookiesActivity.java
+@@ -25,13 +25,12 @@ import com.google.zxing.integration.android.IntentResult;
+ import org.json.JSONException;
+ import org.json.JSONObject;
+ import org.torproject.android.R;
+-import org.torproject.android.settings.LocaleHelper;
+ import org.torproject.android.ui.hiddenservices.adapters.ClientCookiesAdapter;
+ import org.torproject.android.ui.hiddenservices.dialogs.AddCookieDialog;
+ import org.torproject.android.ui.hiddenservices.dialogs.CookieActionsDialog;
+ import org.torproject.android.ui.hiddenservices.dialogs.SelectCookieBackupDialog;
+ import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
+-import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
++import org.torproject.torbrowser.ui.hiddenservices.providers.CookieContentProvider;
+ 
+ public class ClientCookiesActivity extends AppCompatActivity {
+     public final int WRITE_EXTERNAL_STORAGE_FROM_COOKIE_ACTIONBAR = 3;
+@@ -103,11 +102,6 @@ public class ClientCookiesActivity extends AppCompatActivity {
+     }
+ 
+ 
+-    @Override
+-    protected void attachBaseContext(Context base) {
+-        super.attachBaseContext(LocaleHelper.onAttach(base));
+-    }
+-
+     @Override
+     public boolean onCreateOptionsMenu(Menu menu) {
+         getMenuInflater().inflate(R.menu.cookie_menu, menu);
+diff --git a/app/src/main/java/org/torproject/android/ui/hiddenservices/HiddenServicesActivity.java b/app/src/main/java/org/torproject/android/ui/hiddenservices/HiddenServicesActivity.java
+index d7c1f313..75aefd14 100644
+--- a/app/src/main/java/org/torproject/android/ui/hiddenservices/HiddenServicesActivity.java
++++ b/app/src/main/java/org/torproject/android/ui/hiddenservices/HiddenServicesActivity.java
+@@ -22,13 +22,12 @@ import android.widget.Spinner;
+ import android.widget.Toast;
+ 
+ import org.torproject.android.R;
+-import org.torproject.android.settings.LocaleHelper;
+ import org.torproject.android.ui.hiddenservices.adapters.OnionListAdapter;
+ import org.torproject.android.ui.hiddenservices.dialogs.HSActionsDialog;
+ import org.torproject.android.ui.hiddenservices.dialogs.HSDataDialog;
+ import org.torproject.android.ui.hiddenservices.dialogs.SelectHSBackupDialog;
+ import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
+-import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
++import org.torproject.torbrowser.ui.hiddenservices.providers.HSContentProvider;
+ 
+ public class HiddenServicesActivity extends AppCompatActivity {
+     public final int WRITE_EXTERNAL_STORAGE_FROM_ACTIONBAR = 1;
+@@ -108,11 +107,6 @@ public class HiddenServicesActivity extends AppCompatActivity {
+     }
+ 
+ 
+-    @Override
+-    protected void attachBaseContext(Context base) {
+-        super.attachBaseContext(LocaleHelper.onAttach(base));
+-    }
+-
+     @Override
+     public boolean onCreateOptionsMenu(Menu menu) {
+         getMenuInflater().inflate(R.menu.hs_menu, menu);
+diff --git a/app/src/main/java/org/torproject/android/ui/hiddenservices/adapters/ClientCookiesAdapter.java b/app/src/main/java/org/torproject/android/ui/hiddenservices/adapters/ClientCookiesAdapter.java
+index bbc317a6..670c108a 100644
+--- a/app/src/main/java/org/torproject/android/ui/hiddenservices/adapters/ClientCookiesAdapter.java
++++ b/app/src/main/java/org/torproject/android/ui/hiddenservices/adapters/ClientCookiesAdapter.java
+@@ -14,7 +14,7 @@ import android.widget.TextView;
+ import android.widget.Toast;
+ 
+ import org.torproject.android.R;
+-import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
++import org.torproject.torbrowser.ui.hiddenservices.providers.CookieContentProvider;
+ 
+ public class ClientCookiesAdapter extends CursorAdapter {
+     private LayoutInflater cursorInflater;
+diff --git a/app/src/main/java/org/torproject/android/ui/hiddenservices/adapters/OnionListAdapter.java b/app/src/main/java/org/torproject/android/ui/hiddenservices/adapters/OnionListAdapter.java
+index 9824c773..0079bce3 100644
+--- a/app/src/main/java/org/torproject/android/ui/hiddenservices/adapters/OnionListAdapter.java
++++ b/app/src/main/java/org/torproject/android/ui/hiddenservices/adapters/OnionListAdapter.java
+@@ -14,7 +14,7 @@ import android.widget.TextView;
+ import android.widget.Toast;
+ 
+ import org.torproject.android.R;
+-import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
++import org.torproject.torbrowser.ui.hiddenservices.providers.HSContentProvider;
+ 
+ public class OnionListAdapter extends CursorAdapter {
+     private LayoutInflater cursorInflater;
+diff --git a/app/src/main/java/org/torproject/android/ui/hiddenservices/backup/BackupUtils.java b/app/src/main/java/org/torproject/android/ui/hiddenservices/backup/BackupUtils.java
+index a4790dd8..06606039 100644
+--- a/app/src/main/java/org/torproject/android/ui/hiddenservices/backup/BackupUtils.java
++++ b/app/src/main/java/org/torproject/android/ui/hiddenservices/backup/BackupUtils.java
+@@ -12,8 +12,8 @@ import org.json.JSONException;
+ import org.json.JSONObject;
+ import org.torproject.android.R;
+ import org.torproject.android.service.TorServiceConstants;
+-import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
+-import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
++import org.torproject.torbrowser.ui.hiddenservices.providers.CookieContentProvider;
++import org.torproject.torbrowser.ui.hiddenservices.providers.HSContentProvider;
+ import org.torproject.android.ui.hiddenservices.storage.ExternalStorage;
+ 
+ import java.io.File;
+diff --git a/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/AddCookieDialog.java b/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/AddCookieDialog.java
+index 75663648..d6e280db 100644
+--- a/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/AddCookieDialog.java
++++ b/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/AddCookieDialog.java
+@@ -14,7 +14,7 @@ import android.widget.EditText;
+ import android.widget.Toast;
+ 
+ import org.torproject.android.R;
+-import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
++import org.torproject.torbrowser.ui.hiddenservices.providers.CookieContentProvider;
+ 
+ public class AddCookieDialog extends DialogFragment {
+ 
+diff --git a/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/CookieDeleteDialog.java b/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/CookieDeleteDialog.java
+index 60c4d8e3..fc183981 100644
+--- a/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/CookieDeleteDialog.java
++++ b/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/CookieDeleteDialog.java
+@@ -10,7 +10,7 @@ import android.support.v4.app.DialogFragment;
+ import android.support.v7.app.AlertDialog;
+ 
+ import org.torproject.android.R;
+-import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
++import org.torproject.torbrowser.ui.hiddenservices.providers.CookieContentProvider;
+ 
+ public class CookieDeleteDialog extends DialogFragment {
+ 
+diff --git a/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/HSCookieDialog.java b/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/HSCookieDialog.java
+index 39c1b510..0ae7dae5 100644
+--- a/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/HSCookieDialog.java
++++ b/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/HSCookieDialog.java
+@@ -18,7 +18,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
+ import org.json.JSONException;
+ import org.json.JSONObject;
+ import org.torproject.android.R;
+-import org.torproject.android.ui.hiddenservices.providers.CookieContentProvider;
++import org.torproject.torbrowser.ui.hiddenservices.providers.CookieContentProvider;
+ 
+ public class HSCookieDialog extends DialogFragment {
+ 
+diff --git a/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/HSDataDialog.java b/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/HSDataDialog.java
+index 98255604..bc1754b9 100644
+--- a/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/HSDataDialog.java
++++ b/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/HSDataDialog.java
+@@ -15,7 +15,7 @@ import android.widget.EditText;
+ import android.widget.Toast;
+ 
+ import org.torproject.android.R;
+-import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
++import org.torproject.torbrowser.ui.hiddenservices.providers.HSContentProvider;
+ 
+ public class HSDataDialog extends DialogFragment {
+ 
+diff --git a/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/HSDeleteDialog.java b/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/HSDeleteDialog.java
+index ac5df743..0a60f22b 100644
+--- a/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/HSDeleteDialog.java
++++ b/app/src/main/java/org/torproject/android/ui/hiddenservices/dialogs/HSDeleteDialog.java
+@@ -11,7 +11,7 @@ import android.support.v7.app.AlertDialog;
+ 
+ import org.torproject.android.R;
+ import org.torproject.android.service.TorServiceConstants;
+-import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
++import org.torproject.torbrowser.ui.hiddenservices.providers.HSContentProvider;
+ 
+ import java.io.File;
+ 
+diff --git a/app/src/main/java/org/torproject/android/ui/hiddenservices/providers/CookieContentProvider.java b/app/src/main/java/org/torproject/android/ui/hiddenservices/providers/CookieContentProvider.java
+index f420a6d8..4a371933 100644
+--- a/app/src/main/java/org/torproject/android/ui/hiddenservices/providers/CookieContentProvider.java
++++ b/app/src/main/java/org/torproject/android/ui/hiddenservices/providers/CookieContentProvider.java
+@@ -1,4 +1,4 @@
+-package org.torproject.android.ui.hiddenservices.providers;
++package org.torproject.torbrowser.ui.hiddenservices.providers;
+ 
+ import android.content.ContentProvider;
+ import android.content.ContentUris;
+@@ -22,7 +22,7 @@ public class CookieContentProvider extends ContentProvider {
+             ClientCookie.AUTH_COOKIE_VALUE,
+             ClientCookie.ENABLED
+     };
+-    private static final String AUTH = "org.torproject.android.ui.hiddenservices.providers.cookie";
++    private static final String AUTH = "org.torproject.torbrowser.ui.hiddenservices.providers.cookie";
+     public static final Uri CONTENT_URI =
+             Uri.parse("content://" + AUTH + "/cookie");
+     //UriMatcher
+diff --git a/app/src/main/java/org/torproject/android/ui/hiddenservices/providers/HSContentProvider.java b/app/src/main/java/org/torproject/android/ui/hiddenservices/providers/HSContentProvider.java
+index d7b558fd..be7d2de2 100644
+--- a/app/src/main/java/org/torproject/android/ui/hiddenservices/providers/HSContentProvider.java
++++ b/app/src/main/java/org/torproject/android/ui/hiddenservices/providers/HSContentProvider.java
+@@ -1,4 +1,4 @@
+-package org.torproject.android.ui.hiddenservices.providers;
++package org.torproject.torbrowser.ui.hiddenservices.providers;
+ 
+ import android.content.ContentProvider;
+ import android.content.ContentUris;
+@@ -27,7 +27,7 @@ public class HSContentProvider extends ContentProvider {
+             HiddenService.CREATED_BY_USER,
+             HiddenService.ENABLED
+     };
+-    private static final String AUTH = "org.torproject.android.ui.hiddenservices.providers";
++    private static final String AUTH = "org.torproject.torbrowser.ui.hiddenservices.providers";
+     public static final Uri CONTENT_URI =
+             Uri.parse("content://" + AUTH + "/hs");
+     //UriMatcher
+diff --git a/app/src/main/java/org/torproject/android/ui/onboarding/BridgeWizardActivity.java b/app/src/main/java/org/torproject/android/ui/onboarding/BridgeWizardActivity.java
+index e03a8d2d..47778a32 100644
+--- a/app/src/main/java/org/torproject/android/ui/onboarding/BridgeWizardActivity.java
++++ b/app/src/main/java/org/torproject/android/ui/onboarding/BridgeWizardActivity.java
+@@ -19,7 +19,6 @@ import android.widget.TextView;
+ import org.torproject.android.R;
+ import org.torproject.android.service.OrbotConstants;
+ import org.torproject.android.service.util.Prefs;
+-import org.torproject.android.settings.LocaleHelper;
+ 
+ import java.io.IOException;
+ import java.net.InetSocketAddress;
+@@ -34,16 +33,16 @@ public class BridgeWizardActivity extends AppCompatActivity {
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_bridge_wizard);
+-        Toolbar toolbar = findViewById(R.id.toolbar);
++        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         setSupportActionBar(toolbar);
+         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+ 
+-        tvStatus = findViewById(R.id.lbl_bridge_test_status);
++        tvStatus = (TextView) findViewById(R.id.lbl_bridge_test_status);
+         tvStatus.setVisibility(View.GONE);
+ 
+         setTitle(getString(R.string.bridges));
+ 
+-        RadioButton btnDirect = findViewById(R.id.btnBridgesDirect);
++        RadioButton btnDirect = (RadioButton) findViewById(R.id.btnBridgesDirect);
+         btnDirect.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -53,7 +52,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
+             }
+         });
+ 
+-        RadioButton btnObfs4 = findViewById(R.id.btnBridgesObfs4);
++        RadioButton btnObfs4 = (RadioButton) findViewById(R.id.btnBridgesObfs4);
+         btnObfs4.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -64,7 +63,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
+         });
+ 
+ 
+-        RadioButton btnMeek = findViewById(R.id.btnBridgesMeek);
++        RadioButton btnMeek = (RadioButton) findViewById(R.id.btnBridgesMeek);
+         btnMeek.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -75,7 +74,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
+         });
+ 
+ 
+-        RadioButton btnNew = findViewById(R.id.btnBridgesNew);
++        RadioButton btnNew = (RadioButton) findViewById(R.id.btnBridgesNew);
+         btnNew.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -92,11 +91,6 @@ public class BridgeWizardActivity extends AppCompatActivity {
+ 
+     }
+ 
+-    @Override
+-    protected void attachBaseContext(Context base) {
+-        super.attachBaseContext(LocaleHelper.onAttach(base));
+-    }
+-
+     @Override
+     public boolean onOptionsItemSelected(MenuItem item) {
+         if (item.getItemId() == android.R.id.home) {
+diff --git a/app/src/main/java/org/torproject/android/ui/onboarding/OnboardingActivity.java b/app/src/main/java/org/torproject/android/ui/onboarding/OnboardingActivity.java
+deleted file mode 100644
+index a8bad692..00000000
+--- a/app/src/main/java/org/torproject/android/ui/onboarding/OnboardingActivity.java
++++ /dev/null
+@@ -1,147 +0,0 @@
+-package org.torproject.android.ui.onboarding;
+-
+-import android.content.Context;
+-import android.content.Intent;
+-import android.content.pm.PackageManager;
+-import android.content.pm.ResolveInfo;
+-import android.net.Uri;
+-import android.os.Bundle;
+-import android.support.annotation.Nullable;
+-import android.support.v4.app.Fragment;
+-import android.text.TextUtils;
+-import android.util.Log;
+-import android.view.View;
+-
+-import com.github.paolorotolo.appintro.AppIntro;
+-
+-import org.torproject.android.R;
+-import org.torproject.android.settings.LocaleHelper;
+-import org.torproject.android.ui.AppManagerActivity;
+-import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
+-import org.torproject.android.vpn.VPNEnableActivity;
+-
+-import java.util.List;
+-
+-public class OnboardingActivity extends AppIntro {
+-
+-    @Override
+-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-
+-        // Instead of fragments, you can also use our default slide
+-        // Just set a title, description, background and image. AppIntro will do the rest.
+-        CustomSlideBigText welcome = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
+-        welcome.setTitle(getString(R.string.hello));
+-        welcome.setSubTitle(getString(R.string.welcome));
+-        addSlide(welcome);
+-
+-        CustomSlideBigText intro2 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
+-        intro2.setTitle(getString(R.string.browser_the_internet));
+-        intro2.setSubTitle(getString(R.string.no_tracking));
+-        addSlide(intro2);
+-
+-        CustomSlideBigText cs2 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
+-        cs2.setTitle(getString(R.string.bridges_sometimes));
+-        cs2.showButton(getString(R.string.action_more), new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                startActivity(new Intent(OnboardingActivity.this,BridgeWizardActivity.class));
+-            }
+-        });
+-        addSlide(cs2);
+-
+-        if (PermissionManager.isLollipopOrHigher()) {
+-
+-            CustomSlideBigText cs3 = CustomSlideBigText.newInstance(R.layout.custom_slide_big_text);
+-            cs3.setTitle(getString(R.string.vpn_setup));
+-            cs3.setSubTitle(getString(R.string.vpn_setup_sub));
+-            cs3.showButton(getString(R.string.action_vpn_choose), new View.OnClickListener() {
+-                @Override
+-                public void onClick(View v) {
+-                    startActivity(new Intent(OnboardingActivity.this, VPNEnableActivity.class));
+-                    startActivityForResult(new Intent(OnboardingActivity.this, AppManagerActivity.class), 9999);
+-
+-                }
+-            });
+-            addSlide(cs3);
+-
+-        }
+-
+-        // OPTIONAL METHODS
+-        // Override bar/separator color.
+-        setBarColor(getResources().getColor(R.color.dark_purple));
+-        setSeparatorColor(getResources().getColor(R.color.panel_background_main));
+-
+-        // Hide Skip/Done button.
+-        showSkipButton(false);
+-        setProgressButtonEnabled(true);
+-    }
+-
+-    @Override
+-    public void onSkipPressed(Fragment currentFragment) {
+-        super.onSkipPressed(currentFragment);
+-        // Do something when users tap on Skip button.
+-    }
+-
+-    @Override
+-    public void onDonePressed(Fragment currentFragment) {
+-        super.onDonePressed(currentFragment);
+-        // Do something when users tap on Done button.
+-        finish();
+-    }
+-
+-    @Override
+-    public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
+-        super.onSlideChanged(oldFragment, newFragment);
+-        // Do something when the slide changes.
+-    }
+-
+-
+-    @Override
+-    protected void attachBaseContext(Context base) {
+-        super.attachBaseContext(LocaleHelper.onAttach(base));
+-    }
+-
+-    public static boolean isAppInstalled(PackageManager pm, String packageName) {
+-        try {
+-            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+-            return true;
+-        } catch (PackageManager.NameNotFoundException e) {
+-            return false;
+-        }
+-    }
+-
+-    public static Intent getInstallIntent(String packageName, Context context) {
+-        final Intent intent = new Intent(Intent.ACTION_VIEW);
+-        intent.setData(Uri.parse(MARKET_URI + packageName));
+-
+-        PackageManager pm = context.getPackageManager();
+-        List<ResolveInfo> resInfos = pm.queryIntentActivities(intent, 0);
+-
+-        String foundPackageName = null;
+-        for (ResolveInfo r : resInfos) {
+-            Log.i("Install", "market: " + r.activityInfo.packageName);
+-            if (TextUtils.equals(r.activityInfo.packageName, FDROID_PACKAGE_NAME)
+-                    || TextUtils.equals(r.activityInfo.packageName, PLAY_PACKAGE_NAME)) {
+-                foundPackageName = r.activityInfo.packageName;
+-                break;
+-            }
+-        }
+-
+-        if (foundPackageName == null) {
+-            intent.setData(Uri.parse(FDROID_APP_URI + packageName));
+-        } else {
+-            intent.setPackage(foundPackageName);
+-        }
+-        return intent;
+-    }
+-
+-    final static String MARKET_URI = "market://details?id=";
+-    final static String FDROID_APP_URI = "https://f-droid.org/repository/browse/?fdid=";
+-    final static String PLAY_APP_URI = "https://play.google.com/store/apps/details?id=";
+-    final static String FDROID_URI = "https://f-droid.org/repository/browse/?fdfilter=info.guardianproject";
+-    final static String PLAY_URI = "https://play.google.com/store/apps/developer?id=The+Guardian+Project";
+-
+-    private final static String FDROID_PACKAGE_NAME = "org.fdroid.fdroid";
+-    private final static String PLAY_PACKAGE_NAME = "com.android.vending";
+-}
+\ No newline at end of file
+diff --git a/app/src/main/res/menu/orbot_main.xml b/app/src/main/res/menu/orbot_main.xml
+index cb25b9e0..1231da8e 100644
+--- a/app/src/main/res/menu/orbot_main.xml
++++ b/app/src/main/res/menu/orbot_main.xml
+@@ -87,7 +87,7 @@
+          />
+  
+   <item android:id="@+id/menu_exit"
+-        android:title="@string/menu_exit"
++        android:title="@string/button_close"
+          android:icon="@drawable/ic_menu_exit"
+       yourapp:showAsAction="never"
+          
 diff --git a/app/src/main/res/values-ay/strings.xml b/app/src/main/res/values-ay/strings.xml
 index 12256d87..c61d039d 100644
 --- a/app/src/main/res/values-ay/strings.xml
@@ -147,6 +848,44 @@ index de881840..5c449773 100644
    <string name="app_description">Pulsuz proksi tətbiqetməsi olan Orbot başqa tətbiqetmələrə internetdən daha təhlükəsiz istifadə etmək imkanı verir. Orbot sizin internet trafikinizi şifrələmək üçün Tordan istifadə edir və dünyanın hər yerində kompüterlərin birindən o birinə sıçramaqla bunu gizlədir. Tor pulsuz proqram təminatıdır, eyni zamanda sizin şəxsi azadlığınız və təhlükəsizliyinizə, gizli biznes fəaliyyəti və əlaqələrə, o cümlədən trafik analiz adlanan dövlət təhlükəsizliyinə xələl gətirə biləcək şəbəkə nəzarəti formalarından müdafiə olunmağa yardım edən açıq şəbəkədir.</string>
    <string name="internal_web_url">http://orbot/</string>
    <string name="default_web_url">http://check.torproject.org</string>
+diff --git a/app/src/main/res/values-be/strings.xml b/app/src/main/res/values-be/strings.xml
+index c4ff8ec9..03d8e29d 100644
+--- a/app/src/main/res/values-be/strings.xml
++++ b/app/src/main/res/values-be/strings.xml
+@@ -43,9 +43,9 @@
+   <string name="pref_transparent_all_title">Накіроўваць усё праз Tor</string>
+   <string name="pref_transparent_all_summary">Накіроўваць трафік усіх дадаткаў праз Tor</string>
+   <string name="pref_transparent_port_fallback_title">Рэзервовы порт проксі</string>
+-  <string name="pref_transparent_port_fallback_summary">ПАПЯРЭДЖАННЕ: абыходзіць агульныя парты (80, 443 і г. д.). *ВЫКАРЫСТОЎВАЦЬ ТОЛЬКІ* калі рэжымы \\'Усё\\' ці \\'Дадатак\\' не працуюць.</string>
++  <string name="pref_transparent_port_fallback_summary">ПАПЯРЭДЖАННЕ: абыходзіць агульныя парты (80, 443 і г. д.). *ВЫКАРЫСТОЎВАЦЬ ТОЛЬКІ* калі рэжымы \'Усё\' ці \'Дадатак\' не працуюць.</string>
+   <string name="pref_transparent_port_title">Спіс партоў</string>
+-  <string name="pref_transparent_port_summary">Спіс партоў для проксікацыі. *ВЫКАРЫСТОЎВАЦЬ ТОЛЬКІ* калі рэжымы \\'Усё\\' ці \\'Дадатак\\' не працуюць.</string>
++  <string name="pref_transparent_port_summary">Спіс партоў для проксікацыі. *ВЫКАРЫСТОЎВАЦЬ ТОЛЬКІ* калі рэжымы \'Усё\' ці \'Дадатак\' не працуюць.</string>
+   <string name="pref_transparent_port_dialog">Увядзіце парты для проксіфацыі</string>
+   <string name="pref_has_root">Запытаць root-доступ</string>
+   <string name="pref_has_root_summary">Запытаць root-доступ для празрыстай проксіфацыі</string>
+@@ -87,7 +87,7 @@
+   <string name="wizard_final_msg">Мільёны людзей ва ўсім свеце выкарыстоўваюць Tor па розных прычынах. Журналісты і блогеры, праваабаронцы, супрацоўнікі праваахоўных органаў, салдаты, карпарацыі, грамадзяне краін з рэпрэсіўным рэжымам і проста звычайныя грамадзяне..., а зараз гатовы і вы!</string>
+   <string name="wizard_exit_at_first_screen_toast">Калі ласка, наладзьце Orbot перш чым прыступіць да выкарыстання!</string>
+   <!--END Welcome Wizard strings (DJH)-->
+-  <string name="connect_first_time">Вы паспяхова далучыліся да сеткі Tor, але гэта НЕ значыць, што ваша прылада бяспечная. Вы можаце скарыстацца функцыяй \\'Праверка\\' з меню, каб пратэставаць ваш браўзар.\n\nНаведаеце наш сайт https://guardianproject.info/apps/orbot ці адпраўце ліст на адрас help@guardianproject.info, каб даведацца больш.</string>
++  <string name="connect_first_time">Вы паспяхова далучыліся да сеткі Tor, але гэта НЕ значыць, што ваша прылада бяспечная. Вы можаце скарыстацца функцыяй \'Праверка\' з меню, каб пратэставаць ваш браўзар.\n\nНаведаеце наш сайт https://guardianproject.info/apps/orbot ці адпраўце ліст на адрас help@guardianproject.info, каб даведацца больш.</string>
+   <string name="tor_check">Гэта прывядзе да запуску браўзара, абранага на вашай прыладзе па змаўчанні, і падключэнню да сайта https://check.torproject.org дзеля праверкі правільнасці працы Orbot і вызначэння, ці падключаны вы да сеткі Tor.</string>
+   <string name="pref_hs_group">Схаваныя службы</string>
+   <string name="pref_general_group">Агульныя</string>
+@@ -101,9 +101,9 @@
+   <string name="wizard_warning_msg">Сама па сабе ўсталёўка Orbot не зробіць аўтаматычна ваш мабільны трафік ананімным.\n\n Вы павінны правільна наладзіць Orbot, вашу прыладу і іншыя дадаткі, што б паспяхова выкарыстоўваць Tor.</string>
+   <!--Permissions screen-->
+   <string name="wizard_permissions_title">Дазволы</string>
+-  <string name="wizard_permissions_root_msg1">Вы гэтак жа можаце па жаданні даць Orbot правы \\'Суперкарыстача\\' для доступу да дадатковых магчымасцяў тыпу празрыстай проксіфацыі.</string>
+-  <string name="wizard_permissions_root_msg2">Здаецца, ваша прылада не мае root-правоў і не прапануе доступ \\'Суперкарыстача\\'.\n\nКалі ласка, паспрабуйце рэжым \\'Дадаткі\\' на галоўным экране.</string>
+-  <string name="wizard_permissions_no_root_msg">Здаецца, ваша прылада не мае root-правоў і не прапануе доступ \\'Суперкарыстача\\'.\n\n Калі ласка, паспрабуйце рэжым \\'Дадаткі\\' на галоўным экране.</string>
++  <string name="wizard_permissions_root_msg1">Вы гэтак жа можаце па жаданні даць Orbot правы \'Суперкарыстача\' для доступу да дадатковых магчымасцяў тыпу празрыстай проксіфацыі.</string>
++  <string name="wizard_permissions_root_msg2">Здаецца, ваша прылада не мае root-правоў і не прапануе доступ \'Суперкарыстача\'.\n\nКалі ласка, паспрабуйце рэжым \'Дадаткі\' на галоўным экране.</string>
++  <string name="wizard_permissions_no_root_msg">Здаецца, ваша прылада не мае root-правоў і не прапануе доступ \'Суперкарыстача\'.\n\n Калі ласка, паспрабуйце рэжым \'Дадаткі\' на галоўным экране.</string>
+   <!--TipsAndTricks screen-->
+   <string name="wizard_tips_title">Дадаткі, што працуюць з Orbot</string>
+   <string name="wizard_tips_gibberbot">ChatSecure: дадатак для бяспечнага ліставання з прыватным шыфраваннем</string>
 diff --git a/app/src/main/res/values-ca/strings.xml b/app/src/main/res/values-ca/strings.xml
 index bac4cbad..c37f1399 100644
 --- a/app/src/main/res/values-ca/strings.xml
@@ -231,6 +970,19 @@ index 12015e1c..8f84cbe3 100644
    <string name="app_description">Το Orbot είναι μια δωρεάν εφαρμογή μεσολάβησης που επιτρέπει σε άλλες εφαρμογές να χρησιμοποιούν το Διαδίκτυο με περισσότερη ασφάλεια. Το Orbot χρησιμοποιεί τον Tor για την κρυπτογράφηση της διαδικτυακής σας κίνησης και στη συνέχεια την κρύβει αναπηδώντας μέσω μιας σειράς υπολογιστών σε όλο τον κόσμο. Το Tor είναι ελεύθερο λογισμικό και ένα ανοιχτό δίκτυο που σας βοηθά να σταθείτε ενάντια σε μια μορφή επιτήρησης δικτύου που απειλεί την προσωπική ελευθερία και ιδιωτικότητα, εμπιστευτικές επιχειρηματικές δραστηριότητες και σχέσεις, και την κρατική ασφάλεια γνωστή ως traffic analysis.</string>
    <string name="internal_web_url">http://orbot/</string>
    <string name="default_web_url">http://check.torproject.org</string>
+diff --git a/app/src/main/res/values-en-rGB/poestrings.xml b/app/src/main/res/values-en-rGB/poestrings.xml
+index 62663670..d09c7d6a 100644
+--- a/app/src/main/res/values-en-rGB/poestrings.xml
++++ b/app/src/main/res/values-en-rGB/poestrings.xml
+@@ -14,7 +14,7 @@
+     <string name="action_more">TELL ME MORE</string>
+ 
+     <string name="vpn_setup">You can enable any app to go through Tor using our built-in VPN.</string>
+-    <string name="vpn_setup_sub">This won\\'t make you anonymous, but it will help get through firewalls.</string>
++    <string name="vpn_setup_sub">This won\'t make you anonymous, but it will help get through firewalls.</string>
+     <string name="action_vpn_choose">CHOOSE APPS</string>
+ 
+     <string name="status_connected">Connected!</string>
 diff --git a/app/src/main/res/values-en-rGB/strings.xml b/app/src/main/res/values-en-rGB/strings.xml
 index 839ff9c2..b3e4a0cc 100644
 --- a/app/src/main/res/values-en-rGB/strings.xml
@@ -855,6 +1607,305 @@ index fb51caa1..6cf4f993 100644
      <string name="app_description">Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</string>
      <string name="internal_web_url">http://orbot/</string>
      <string name="default_web_url">http://check.torproject.org</string>
+diff --git a/app/src/main/res/xml-fa/preferences.xml b/app/src/main/res/xml-fa/orbot_preferences.xml
+similarity index 100%
+rename from app/src/main/res/xml-fa/preferences.xml
+rename to app/src/main/res/xml-fa/orbot_preferences.xml
+diff --git a/app/src/main/res/xml/preferences.xml b/app/src/main/res/xml/orbot_preferences.xml
+similarity index 100%
+rename from app/src/main/res/xml/preferences.xml
+rename to app/src/main/res/xml/orbot_preferences.xml
+diff --git a/app/src/minimalperm/AndroidManifest.xml b/app/src/minimalperm/AndroidManifest.xml
+index adf74209..fedadd9b 100644
+--- a/app/src/minimalperm/AndroidManifest.xml
++++ b/app/src/minimalperm/AndroidManifest.xml
+@@ -122,8 +122,10 @@
+             </intent-filter>
+         </receiver>
+ 
++        <!-- Modify the Content Provider name so it doesn't collide with Orbot (when Orbot is installed, too).
++             TBA fails while starting when this happens -->
+         <activity
+-            android:name=".ui.hiddenservices.HiddenServicesActivity"
++            android:name="org.torproject.torbrowser.ui.hiddenservices.HiddenServicesActivity"
+             android:label="@string/title_activity_hidden_services"
+             android:theme="@style/DefaultTheme">
+             <meta-data
+@@ -132,12 +134,12 @@
+         </activity>
+ 
+         <provider
+-            android:name=".ui.hiddenservices.providers.HSContentProvider"
+-            android:authorities="org.torproject.android.ui.hiddenservices.providers"
++            android:name="org.torproject.torbrowser.ui.hiddenservices.providers.HSContentProvider"
++            android:authorities="org.torproject.torbrowser.ui.hiddenservices.providers"
+             android:exported="false" />
+         <provider
+             android:name="android.support.v4.content.FileProvider"
+-            android:authorities="org.torproject.android.ui.hiddenservices.storage"
++            android:authorities="org.torproject.torbrowser.ui.hiddenservices.storage"
+             android:exported="false"
+             android:grantUriPermissions="true">
+             <meta-data
+@@ -154,9 +156,10 @@
+                 android:value=".OrbotMainActivity" />
+         </activity>
+ 
++        <!-- Modify the Content Provider name -->
+         <provider
+-            android:name=".ui.hiddenservices.providers.CookieContentProvider"
+-            android:authorities="org.torproject.android.ui.hiddenservices.providers.cookie"
++            android:name="org.torproject.torbrowser.ui.hiddenservices.providers.CookieContentProvider"
++            android:authorities="org.torproject.torbrowser.ui.hiddenservices.providers.cookie"
+             android:exported="false" />
+     </application>
+ 
+diff --git a/build.gradle b/build.gradle
+index 553079b6..ce06f082 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -5,7 +5,8 @@ buildscript {
+         google()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.1.4'
++        // Match Fennec
++        classpath 'com.android.tools.build:gradle:3.0.1'
+     }
+ }
+ 
+diff --git a/docs/WALKTHROUGH b/docs/WALKTHROUGH
+index 55a356b5..8e432b04 100644
+--- a/docs/WALKTHROUGH
++++ b/docs/WALKTHROUGH
+@@ -30,7 +30,7 @@
+                     //for this type of non-time critical function you just want to happen in the background at some point soon-ish
+             
+             ├── SettingsPreferences.java
+-                    // Settings activity that loads the res/xml/preferences.xml resource up 
++                    // Settings activity that loads the res/xml/orbot_preferences.xml resource up
+                     // has some custom event handlng, onActivityResult callback result code's as well
+                     // basically meant to tell Orbot activity if critical settings have been modified and whether
+                     // those new settings should be applied (like iptables/transproxy changes)
+diff --git a/jsocksAndroid/build.gradle b/jsocksAndroid/build.gradle
+index 7ac21e4e..8f173b5f 100644
+--- a/jsocksAndroid/build.gradle
++++ b/jsocksAndroid/build.gradle
+@@ -1,12 +1,14 @@
+ apply plugin: 'com.android.library'
+ 
+ android {
+-    compileSdkVersion 27
+-    buildToolsVersion '27.0.3'
++    // Match Fennec's version
++    compileSdkVersion 26
++    buildToolsVersion '26.0.2'
+ 
+     defaultConfig {
+         minSdkVersion 16
+-        targetSdkVersion 27
++        // Match Fennec's version
++        targetSdkVersion 26
+     }
+ 
+     buildTypes {
+diff --git a/orbotservice/build.gradle b/orbotservice/build.gradle
+index fb9b6946..e95f76ac 100644
+--- a/orbotservice/build.gradle
++++ b/orbotservice/build.gradle
+@@ -1,8 +1,9 @@
+ apply plugin: 'com.android.library'
+ 
+ android {
+-    compileSdkVersion 27
+-    buildToolsVersion '27.0.3'
++    // Match Fennec's version
++    compileSdkVersion 26
++    buildToolsVersion '26.0.2'
+ 
+     sourceSets {
+         main {
+@@ -12,7 +13,8 @@ android {
+ 
+     defaultConfig {
+         minSdkVersion 16
+-        targetSdkVersion 27
++        // Match Fennec's version
++        targetSdkVersion 26
+         versionCode 1
+         versionName "1.0"
+ 
+@@ -28,7 +30,8 @@ android {
+ dependencies {
+     implementation project(':jsocksAndroid')
+     implementation 'org.torproject:tor-android-binary:0.3.4.9'
+-    implementation 'com.android.support:appcompat-v7:27.1.1'
++    // Match Fennec's version
++    implementation 'com.android.support:appcompat-v7:23.4.0'
+     implementation 'com.jrummyapps:android-shell:1.0.1'
+     implementation fileTree(dir: 'libs', include: ['.so'])
+     testImplementation 'junit:junit:4.12'
+diff --git a/orbotservice/src/main/java/org/torproject/android/service/TorService.java b/orbotservice/src/main/java/org/torproject/android/service/TorService.java
+index fec88b1f..745e5e8b 100644
+--- a/orbotservice/src/main/java/org/torproject/android/service/TorService.java
++++ b/orbotservice/src/main/java/org/torproject/android/service/TorService.java
+@@ -35,7 +35,10 @@ import android.os.Build;
+ import android.os.IBinder;
+ import android.os.RemoteException;
+ import android.provider.BaseColumns;
+-import android.support.annotation.RequiresApi;
++// Not available in 23.4.0
++// https://developer.android.com/reference/android/support/annotation/RequiresApi
++//import android.support.annotation.RequiresApi;
++import android.annotation.TargetApi;
+ import android.support.v4.app.NotificationCompat;
+ import android.support.v4.content.LocalBroadcastManager;
+ import android.text.TextUtils;
+@@ -52,6 +55,7 @@ import org.torproject.android.control.TorControlConnection;
+ import org.torproject.android.service.util.OtherResourceInstaller;
+ import org.torproject.android.service.vpn.TorifiedApp;
+ import org.torproject.android.service.util.DummyActivity;
++import org.torproject.android.service.util.NotificationBuilderCompat;
+ import org.torproject.android.service.util.Prefs;
+ import org.torproject.android.service.util.TorServiceUtils;
+ import org.torproject.android.service.util.Utils;
+@@ -117,7 +121,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
+     private int mNetworkType = -1;
+ 
+     private NotificationManager mNotificationManager = null;
+-    private NotificationCompat.Builder mNotifyBuilder;
++    private NotificationBuilderCompat mNotifyBuilder;
+     private Notification mNotification;
+     private boolean mNotificationShowing = false;
+ 
+@@ -138,8 +142,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
+ 
+     private ArrayList<Bridge> alBridges = null;
+ 
+-    private static final Uri HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
+-    private static final Uri COOKIE_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers.cookie/cookie");
++    // Modify the Content Provider name so it doesn't collide with Orbot (when Orbot is installed, too).
++    // TBA fails while starting when this happens
++    private static final Uri HS_CONTENT_URI = Uri.parse("content://org.torproject.torbrowser.ui.hiddenservices.providers/hs");
++    private static final Uri COOKIE_CONTENT_URI = Uri.parse("content://org.torproject.torbrowser.ui.hiddenservices.providers.cookie/cookie");
+ 
+     public static final class HiddenService implements BaseColumns {
+         public static final String NAME = "name";
+@@ -246,9 +252,12 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
+         mNotificationShowing = false;
+     }
+ 
+-    private final static String NOTIFICATION_CHANNEL_ID = "orbot_channel_1";
++    private final static String NOTIFICATION_CHANNEL_ID = "torbrowser_channel_1";
+ 
+-    @RequiresApi(api = Build.VERSION_CODES.O)
++    // Use TargetApi until we use a support library version that adds the
++    // RequriesApi annotation
++    //@RequiresApi(api = Build.VERSION_CODES.O)
++    @TargetApi(value = Build.VERSION_CODES.O)
+     private void createNotificationChannel ()
+     {
+         NotificationManager mNotificationManager =
+@@ -277,6 +286,10 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
+          //Reusable code.
+          PackageManager pm = getPackageManager();
+          Intent intent = pm.getLaunchIntentForPackage(getPackageName());
++         // Add these so Fennec's LauncherActivity can correctly route the request
++         // to Orbot when the user taps the Notification
++         intent.setAction(TorServiceConstants.TOR_APP_USERNAME);
++         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+          PendingIntent pendIntent = PendingIntent.getActivity(TorService.this, 0, intent, 0);
+  
+         if (mNotifyBuilder == null)
+@@ -286,7 +299,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
+                 
+             if (mNotifyBuilder == null)
+             {
+-                mNotifyBuilder = new NotificationCompat.Builder(this)
++                mNotifyBuilder = new NotificationBuilderCompat(this, NOTIFICATION_CHANNEL_ID)
+                     .setContentTitle(getString(R.string.app_name))
+                     .setSmallIcon(R.drawable.ic_stat_tor);
+ 
+@@ -298,7 +311,6 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
+ 
+             mNotifyBuilder.setCategory(Notification.CATEGORY_SERVICE);
+ 
+-            mNotifyBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
+ 
+ 
+             Intent intentRefresh = new Intent();
+@@ -406,9 +418,9 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
+     @Override
+     public void onTaskRemoved(Intent rootIntent){
+          Log.d(OrbotConstants.TAG,"task removed");
+-         Intent intent = new Intent( this, DummyActivity.class );
+-         intent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+-         startActivity( intent );
++         // Don't prevent being killed. If the user swiped away the
++         // app, then we should die.
++         stopTor();
+     }
+ 
+     @Override
+@@ -649,12 +661,14 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
+         }
+         
+         extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append('\n');
+-        extraLines.append("SafeSocks 0").append('\n');
++        // We don't want this disabled.
++        //extraLines.append("SafeSocks 0").append('\n');
+         extraLines.append("TestSocks 0").append('\n');
+     	if (Prefs.openProxyOnAllInterfaces())
+     		extraLines.append("SocksListenAddress 0.0.0.0").append('\n');
+ 
+-        extraLines.append("HTTPTunnelPort ").append(mPortHTTP).append(isolate).append('\n');
++        // We don't want/need this either
++        //extraLines.append("HTTPTunnelPort ").append(mPortHTTP).append(isolate).append('\n');
+ 
+ 
+ 	if(prefs.getBoolean(OrbotConstants.PREF_CONNECTION_PADDING, false))
+@@ -862,6 +876,7 @@ public class TorService extends Service implements TorServiceConstants, OrbotCon
+         
+         String torCmdString = fileTor.getCanonicalPath()
+                 + " DataDirectory " + appCacheHome.getCanonicalPath()
++                + " SocksPort " + TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT
+                 + " --defaults-torrc " + torrcPath
+                 + " -f " + torrcPath + ".custom";
+     
+diff --git a/orbotservice/src/main/java/org/torproject/android/service/TorServiceConstants.java b/orbotservice/src/main/java/org/torproject/android/service/TorServiceConstants.java
+index 4b62a6a8..44743156 100644
+--- a/orbotservice/src/main/java/org/torproject/android/service/TorServiceConstants.java
++++ b/orbotservice/src/main/java/org/torproject/android/service/TorServiceConstants.java
+@@ -8,7 +8,7 @@ import android.content.Intent;
+ public interface TorServiceConstants {
+ 
+ 	String TOR_APP_USERNAME = "org.torproject.android";
+-	String BROWSER_APP_USERNAME = "info.guardianproject.orfox";
++	String BROWSER_APP_USERNAME = "org.torproject.torbrowser_alpha";
+ 	
+ 	String DIRECTORY_TOR_BINARY = "bin";
+ 	String DIRECTORY_TOR_DATA = "data";
+@@ -52,15 +52,16 @@ public interface TorServiceConstants {
+ 
+ 	String IP_LOCALHOST = "127.0.0.1";
+ 	int UPDATE_TIMEOUT = 1000;
+-	int TOR_TRANSPROXY_PORT_DEFAULT = 9040;
++	int TOR_TRANSPROXY_PORT_DEFAULT = 9140;
+ 	
+ 	int STANDARD_DNS_PORT = 53;
+ 	int TOR_DNS_PORT_DEFAULT = 5400;
+ 	String TOR_VPN_DNS_LISTEN_ADDRESS = "127.0.0.1";
+ 	
+-	int CONTROL_PORT_DEFAULT = 9051;
+-    int HTTP_PROXY_PORT_DEFAULT = 8118; // like Privoxy!
+-    int SOCKS_PROXY_PORT_DEFAULT = 9050;
++        // Not used, but we'll change this for consistency
++	int CONTROL_PORT_DEFAULT = 9151;
++    int HTTP_PROXY_PORT_DEFAULT = 8218; // like Privoxy!
++    int SOCKS_PROXY_PORT_DEFAULT = 9150;
+ 
+     
+ 	//path to check Tor against
 diff --git a/orbotservice/src/main/res/values-az/strings.xml b/orbotservice/src/main/res/values-az/strings.xml
 index c1d53370..9b851eb8 100644
 --- a/orbotservice/src/main/res/values-az/strings.xml
@@ -1527,6 +2578,10 @@ index 11485598..f269d88f 100644
    <string name="app_description">Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</string>
    <string name="internal_web_url">http://orbot/</string>
    <string name="default_web_url">http://check.torproject.org</string>
--- 
-2.17.1
-
+diff --git a/settings.gradle b/settings.gradle
+index 9984a03e..e7b4def4 100644
+--- a/settings.gradle
++++ b/settings.gradle
+@@ -1,2 +1 @@
+-include ':jsocksAndroid', ':orbotservice'
+ include ':app'
