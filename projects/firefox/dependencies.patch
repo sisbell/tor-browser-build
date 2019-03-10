@@ -1,0 +1,37 @@
+diff --git a/mobile/android/app/build.gradle b/mobile/android/app/build.gradle
+index d0060901b6b3..18013ca9b2f5 100644
+--- a/mobile/android/app/build.gradle
++++ b/mobile/android/app/build.gradle
+@@ -226,8 +226,10 @@ dependencies {
+     implementation "com.android.support:customtabs:${mozconfig.substs.ANDROID_SUPPORT_LIBRARY_VERSION}"
+     implementation "com.android.support:palette-v7:${mozconfig.substs.ANDROID_SUPPORT_LIBRARY_VERSION}"
+     implementation files('Orbot-16.0.5-RC-1-tor-0.3.4.9-fullperm-release.aar')
+-    implementation files('orbotservice-release.aar')
+-    implementation files('jsocksAndroid-release.aar')
++    implementation files('android-release.aar')
++    implementation files('universal-0.0.3.jar')
++    implementation files('jsocksAndroid-sdkVer26-release.aar')
++    implementation files('service-sdkVer26-release.aar')
+ 
+     if (mozconfig.substs.MOZ_NATIVE_DEVICES) {
+         implementation "com.android.support:mediarouter-v7:${mozconfig.substs.ANDROID_SUPPORT_LIBRARY_VERSION}"
+@@ -266,13 +268,16 @@ dependencies {
+     // Including the Robotium JAR directly can cause issues with dexing.
+     androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.5.4'
+ 
++    //tor-android-service
++    implementation 'net.freehaven.tor.control:jtorctl:0.2'
++    implementation 'org.torproject:tor-android-binary:0.3.5.6-rc'
++    implementation 'org.slf4j:slf4j-api:1.7.25'
++    implementation 'org.slf4j:slf4j-android:1.7.25'
++
+     // Orbot
+     implementation 'com.github.delight-im:Android-Languages:v1.0.1'
+     implementation 'pl.bclogic:pulsator4droid:1.0.3'
+ 
+-    // Orbotservice
+-    implementation 'org.torproject:tor-android-binary:0.3.4.9'
+-    implementation 'com.jrummyapps:android-shell:1.0.1'
+ }
+ 
+ // TODO: (bug 1261486): This impl is not robust -
