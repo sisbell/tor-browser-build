@@ -1,0 +1,12 @@
+diff --git a/app/proguard-rules.txt b/app/proguard-rules.txt
+index b1120f82..0e74d337 100644
+--- a/app/proguard-rules.txt
++++ b/app/proguard-rules.txt
+@@ -11,4 +11,5 @@
+ -keep class okhttp3.** { *; }
+ -keep interface okhttp3.** { *; }
+ -dontwarn okhttp3.**
+--dontwarn okio.**
+\ No newline at end of file
++-dontwarn okio.**
++-keep class org.torproject.** {   public *; }
