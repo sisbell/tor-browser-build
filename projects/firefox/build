@@ -108,6 +108,10 @@ mv -f $rootdir/[% c('input_files_by_name/mozconfig') %] .mozconfig
   cp -r $gradle_repo/guardianproject/gpmaven/master/* $gradle_repo
   # Move orbot files so they will be included in the apk during the build
   cp $rootdir/[% c('input_files_by_name/orbot') %]/* mobile/android/app
+  cp $rootdir/[% c('input_files_by_name/topl') %]/* mobile/android/app
+  cp $rootdir/[% c('input_files_by_name/tor-android-service') %]/* mobile/android/app
+  # Apply patch
+  patch -p1 < $rootdir/dependencies.patch
   # Prepare building the multi-locale .apk
   mkdir -p /var/tmp/dist/locales
   tar -C /var/tmp/dist/locales -xf $rootdir/[% c('input_files_by_name/firefox-locale-bundle') %]
