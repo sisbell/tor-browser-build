@@ -1,0 +1,73 @@
+# vim: filetype=yaml sw=2
+version: 8.0.0
+filename: '[% project %]-[% c("version") %]-[% c("var/build_id") %].tar.gz'
+
+var:
+  container:
+    use_container: 1
+
+input_files:
+  - project: container-image
+  - name: '[% c("var/compiler") %]'
+    project: '[% c("var/compiler") %]'
+    enable: '[% c("var/linux") %]'
+  - project: cmake
+    name: cmake
+  - URL: 'https://releases.llvm.org/[% c("version") %]/llvm-[% c("version") %].src.tar.xz'
+    name: llvm
+    sig_ext: sig
+    file_gpg_id: 1
+    gpg_keyring: clang.gpg
+  - URL: 'https://releases.llvm.org/[% c("version") %]/cfe-[% c("version") %].src.tar.xz'
+    name: cfe
+    sig_ext: sig
+    file_gpg_id: 1
+    gpg_keyring: clang.gpg
+  - URL: 'https://releases.llvm.org/[% c("version") %]/libcxx-[% c("version") %].src.tar.xz'
+    name: libcxx
+    sig_ext: sig
+    file_gpg_id: 1
+    gpg_keyring: clang.gpg
+  - URL: 'https://releases.llvm.org/[% c("version") %]/libcxxabi-[% c("version") %].src.tar.xz'
+    name: libcxxabi
+    sig_ext: sig
+    file_gpg_id: 1
+    gpg_keyring: clang.gpg
+  - URL: 'https://releases.llvm.org/[% c("version") %]/lld-[% c("version") %].src.tar.xz'
+    name: lld
+    sig_ext: sig
+    file_gpg_id: 1
+    gpg_keyring: clang.gpg
+  - URL: 'https://releases.llvm.org/[% c("version") %]/compiler-rt-[% c("version") %].src.tar.xz'
+    name: compiler-rt
+    sig_ext: sig
+    file_gpg_id: 1
+    gpg_keyring: clang.gpg
+  - filename: llvm-objcopy-1.patch
+    enable: '[% c("var/windows") %]'
+  - filename: llvm-objcopy-2.patch
+    enable: '[% c("var/windows") %]'
+  - filename: llvm-objcopy-3.patch
+    enable: '[% c("var/windows") %]'
+  - filename: llvm-objcopy-4.patch
+    enable: '[% c("var/windows") %]'
+  - filename: llvm-objcopy-5.patch
+    enable: '[% c("var/windows") %]'
+  - filename: llvm-objcopy-6.patch
+    enable: '[% c("var/windows") %]'
+  - filename: llvm-objcopy-7.patch
+    enable: '[% c("var/windows") %]'
+  - filename: llvm-objcopy-8.patch
+    enable: '[% c("var/windows") %]'
+  - filename: llvm-objcopy-9.patch
+    enable: '[% c("var/windows") %]'
+  - filename: llvm-objcopy-10.patch
+    enable: '[% c("var/windows") %]'
+  - filename: llvm-objcopy-11.patch
+    enable: '[% c("var/windows") %]'
+  - filename: llvm-objcopy-12.patch
+    enable: '[% c("var/windows") %]'
+  # patch does not cope with binary patches. Thus, we add the new file
+  # introduced with `llvm-objcopy-11.patch` ourselves.
+  - filename: bigobj.o.gz
+    enable: '[% c("var/windows") %]'
