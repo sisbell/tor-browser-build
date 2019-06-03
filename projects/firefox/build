@@ -56,6 +56,12 @@ EOF
   mkdir -p /var/tmp/dist
   tar -C /var/tmp/dist -xf $rootdir/[% c('input_files_by_name/binutils') %]
   export PATH="/var/tmp/dist/binutils/bin:$PATH"
+  # Firefox ESR68 needs Yasm >= 1.2.0 which Debian Wheezy does not ship.
+  tar -C /var/tmp/dist -xf $rootdir/[% c('input_files_by_name/yasm') %]
+  export PATH="/var/tmp/dist/yasm/bin:$PATH"
+  # Add clang so stylo can build
+  tar -C /var/tmp/dist -xf [% c('input_files_by_name/clang') %]
+  export LLVM_CONFIG="/var/tmp/dist/clang/bin/llvm-config"
 [% END -%]
 
 mkdir -p /var/tmp/dist
