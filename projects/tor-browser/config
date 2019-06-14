@@ -54,6 +54,7 @@ input_files:
     enable: '[% ! c("var/android") %]'
   - project: firefox
     name: firefox
+    enable: '[% ! c("var/windows") %]'
   - project: tor
     name: tor
     enable: '[% ! c("var/android") %]'

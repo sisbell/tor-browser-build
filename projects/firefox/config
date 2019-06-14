@@ -3,7 +3,7 @@ version: '[% c("abbrev") %]'
 filename: 'firefox-[% c("version") %]-[% c("var/osname") %]-[% c("var/build_id") %]'
 git_hash: 'tor-browser-[% c("var/firefox_version") %]-[% c("var/torbrowser_branch") %]-1-build1'
 tag_gpg_id: 1
-git_url: https://git.torproject.org/tor-browser.git
+git_url: https://github.com/mozilla/gecko-dev #https://git.torproject.org/tor-browser.git
 git_submodule: 1
 gpg_keyring: torbutton.gpg
 
@@ -20,7 +20,9 @@ var:
     - zip
     - autoconf2.13
     - yasm
+      # XXX: for mach
     - python
+    - pkg-config
   container:
     use_container: 1
   # this should be updated when the list of gradle dependencies is changed
@@ -47,7 +49,7 @@ targets:
       branding_directory: '[% IF c("var/android") %]mobile/android[% ELSE %]browser[% END %]/branding/official'
 
   nightly:
-    git_hash: 'tor-browser-[% c("var/firefox_version") %]-[% c("var/torbrowser_branch") %]-1'
+    git_hash: 'beta'
     tag_gpg_id: 0
     var:
       torbrowser_update_channel: default
@@ -69,12 +71,8 @@ targets:
         - hardening-wrapper
         # To pass configure since ESR 31.
         - libpulse-dev
-        # To pass configure since ESR 45.
-        - libgconf2-dev
         # To pass configure since ESR 52
         - libx11-xcb-dev
-        # We built GCC but not the libmpc2, thus we need to install it
-        - libmpc2
 
   linux-i686:
     var:
@@ -85,15 +83,11 @@ targets:
         - libgtk-3-dev:i386
         - libdbus-glib-1-dev:i386
         - libxt-dev:i386
+        - hardening-wrapper
         # To pass configure since ESR 31.
         - libpulse-dev:i386
-        # To pass configure since ESR 45.
-        - libgconf2-dev:i386
         # To pass configure since ESR 52
         - libx11-xcb-dev:i386
-        # We built GCC but not the libmpc2, thus we need to install it
-        - libmpc2
-        - hardening-wrapper
 
   osx-x86_64:
     var:
@@ -139,8 +133,16 @@ input_files:
     enable: '[% c("var/windows") %]'
   - project: rust
     name: rust
-  - project: llvm
-    name: llvm
+  - project: cbindgen
+    name: cbindgen
+  - project: node
+    name: node
+  - project: nasm
+    name: nasm
+  - project: python
+    name: python
+  - project: clang
+    name: clang
     enable: '[% c("var/linux") %]'
   - project: yasm
     name: yasm
