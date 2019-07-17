@@ -1,8 +1,8 @@
 # vim: filetype=yaml sw=2
 version: '[% c("abbrev") %]'
 filename: '[% project %]-[% c("version") %]-[% c("var/build_id") %]'
-git_hash: f81e8f61fd83367aead34ae0ce3b397d2ed6a494
-git_url: https://git.torproject.org/tor-android-service.git
+git_hash: 5c9583cf8e2b7002f71c2971aae7ebb44c067b42
+git_url: https://github.com/sisbell/tor-android-service.git
 git_submodule: 1
 
 var:
@@ -11,7 +11,7 @@ var:
   container:
     use_container: 1
   # this should be updated when the list of gradle dependencies is changed
-  gradle_dependencies_version: 2
+  gradle_dependencies_version: 3
 
 targets:
   android:
@@ -26,7 +26,6 @@ input_files:
   - filename: 'gradle-dependencies-[% c("var/gradle_dependencies_version") %]'
     name: gradle-dependencies
     exec: '[% INCLUDE "fetch-gradle-dependencies" %]'
-  - filename: gradle.patch
-  - filename: require-api.patch
   - project: tor-onion-proxy-library
     name: topl
+  - filename: remove-vpn.patch

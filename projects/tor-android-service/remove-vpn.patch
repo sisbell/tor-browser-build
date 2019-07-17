@@ -1,0 +1,31 @@
+diff --git a/gradle.properties b/gradle.properties
+index 7ed9e622..8177bb30 100644
+--- a/gradle.properties
++++ b/gradle.properties
+@@ -6,7 +6,6 @@
+ # http://www.gradle.org/docs/current/userguide/build_environment.html
+ # Specifies the JVM arguments used for the daemon process.
+ # The setting is particularly useful for tweaking memory settings.
+-org.gradle.jvmargs=-Xmx1536m
+ # When configured, Gradle will run in incubating parallel mode.
+ # This option should only be used with decoupled projects. More details, visit
+ # http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+diff --git a/service/build.gradle b/service/build.gradle
+index e5d38559..2a6a7540 100644
+--- a/service/build.gradle
++++ b/service/build.gradle
+@@ -23,7 +23,6 @@ android {
+ 
+ dependencies {
+     compileOnly fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+-    implementation project(':vpn')
+     implementation 'net.freehaven.tor.control:jtorctl:0.2'
+     implementation "com.android.support:appcompat-v7:${appcompatVersion}"
+     implementation 'org.slf4j:slf4j-api:1.7.25'
+diff --git a/settings.gradle b/settings.gradle
+index 6babf422..452e5aa8 100644
+--- a/settings.gradle
++++ b/settings.gradle
+@@ -1,2 +1 @@
+-include ':vpn'
+ include 'service'
