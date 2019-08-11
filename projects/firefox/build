@@ -52,7 +52,7 @@ EOF
   wine wineboot -i
 [% END -%]
 
-[% IF c("var/linux") %]
+[% IF c("var/linux") || c("var/android") %]
   mkdir -p /var/tmp/dist
   tar -C /var/tmp/dist -xf $rootdir/[% c('input_files_by_name/binutils') %]
   tar -C /var/tmp/dist -xf $rootdir/[% c('input_files_by_name/python') %]
