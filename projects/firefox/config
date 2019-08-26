@@ -1,9 +1,9 @@
 # vim: filetype=yaml sw=2
 version: '[% c("abbrev") %]'
 filename: 'firefox-[% c("version") %]-[% c("var/osname") %]-[% c("var/build_id") %]'
-git_hash: 'tor-browser-[% c("var/firefox_version") %]-[% c("var/torbrowser_branch") %]-1-build2'
-tag_gpg_id: 1
-git_url: https://git.torproject.org/tor-browser.git
+git_hash: 2dbb7aefeaeb0499ac69c67df470e2ed6df8cb71
+#tag_gpg_id: 1
+git_url: https://git.torproject.org/user/sysrqb/tor-browser.git 
 git_submodule: 1
 gpg_keyring: torbutton.gpg
 
@@ -28,7 +28,7 @@ var:
   container:
     use_container: 1
   # this should be updated when the list of gradle dependencies is changed
-  gradle_dependencies_version: 5
+  gradle_dependencies_version: 6
   # used by projects/firefox-locale-bundle
   l10n-changesets.json: '[% exec("cat mobile/locales/l10n-changesets.json") %]'
 
@@ -61,6 +61,10 @@ targets:
     var:
       arch_deps:
         - openjdk-8-jdk
+      container:
+        # Some issues with gradle daemon running without network access. So enable for now.
+        disable_network:
+          build: 0
 
   linux:
     var:
@@ -174,7 +178,9 @@ input_files:
   - project: tor-onion-proxy-library
     name: topl
     enable: '[% c("var/android") %]'
-  - filename: android-dependencies.patch
+  - filename: android-packages.patch
+    enable: '[% c("var/android") %]'
+  - filename: android-remove-emulator.patch
     enable: '[% c("var/android") %]'
   - project: firefox-locale-bundle
     name: firefox-locale-bundle
@@ -183,4 +189,6 @@ input_files:
     name: tba-translation
     enable: '[% c("var/android") %]'
   - filename: 1527534.patch
+    enable: '[% c("var/android") %]'
+  - filename: android-jsocks.patch
     enable: '[% c("var/android") %]'
