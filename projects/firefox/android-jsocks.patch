@@ -1,0 +1,12 @@
+diff --git a/mobile/android/app/build.gradle b/mobile/android/app/build.gradle
+index be0ccdb1b13f..7b90a5566c38 100644
+--- a/mobile/android/app/build.gradle
++++ b/mobile/android/app/build.gradle
+@@ -237,7 +237,6 @@ dependencies {
+ 
+     // tor-android-services
+     implementation files('service-release.aar')
+-    implementation files('jsocksAndroid-release.aar')
+ 
+     // Tor_Onion_Proxy_Library
+     implementation files('universal-0.0.3.jar')
