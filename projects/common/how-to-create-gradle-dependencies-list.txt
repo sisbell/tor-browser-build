@@ -6,6 +6,10 @@ file:
 
    export GRADLE_MAVEN_REPOSITORIES="file://$rootdir/[% c('input_files_by_name/gradle-dependencies') %]"
 
+Also add the debug flag so the download logs will show up:
+
+   export GRADLE_FLAGS="--no-daemon --offline --debug"
+
 then allow network access during the build by setting
 var/container/disable_network/build to 0 in rbm.conf, and rerun the build.
 
@@ -13,7 +17,7 @@ Dependent artifacts will show up as downloads in the logs. You can pull out
 these dependencies into a list with the following command (replacing
 "firefox-android-armv7.log" with the build log file name of the actual project):
 
-`cat logs/firefox-android-armv7.log | grep "Download http" | sed "s/^.*Download //g" > download-urls.txt`
+`cat logs/firefox-android-armv7.log | grep "Performing HTTP" | grep -o "https://.*" | sort | uniq > download-urls.txt`
 
 You will then need to add the new dependency URLs and SHA-256 values into the
 projects/$project/gradle-dependencies-list.txt file. The format of this file is
