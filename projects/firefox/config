@@ -186,5 +186,3 @@ input_files:
   - project: tba-translation
     name: tba-translation
     enable: '[% c("var/android") %]'
-  - filename: 1527534.patch
-    enable: '[% c("var/android") %]'

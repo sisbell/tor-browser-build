@@ -53,10 +53,6 @@ mv -f $rootdir/[% c('input_files_by_name/mozconfig') %] .mozconfig
   export ASAN_OPTIONS="detect_leaks=0"
 [% END -%]
 
-[% IF c("var/android-armv7") -%]
-  cp /var/tmp/dist/android-toolchain/android-ndk/arm/lib64/libclang.so.6 /var/tmp/dist/android-toolchain/android-ndk/arm/lib64/libclang.so
-[% END -%]
-
 [% IF c("var/android") %]
   gradle_repo=/var/tmp/dist/gradle-dependencies
   export GRADLE_MAVEN_REPOSITORIES="file://$gradle_repo"
