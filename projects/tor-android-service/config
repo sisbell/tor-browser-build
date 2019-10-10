@@ -29,5 +29,4 @@ input_files:
   - project: tor-onion-proxy-library
     name: topl
   - filename: remove-native-build.patch
-  - filename: disable-daemon.patch
   - filename: maven-local.patch
