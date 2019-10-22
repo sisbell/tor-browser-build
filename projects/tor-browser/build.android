@@ -42,9 +42,8 @@ zip -d $apk lib/\*
 rm -fR lib
 
 # Bug 31564: Android Gradle Plugin has a reproducibility bug. Decompile and recompile to fix ordering of resources.arsc files
-apktool=$rootdir/[% c('input_files_by_name/apktool') %]
-java -jar $apktool d --no-src -o decompiled $apk
-java -jar $apktool b -o $apk decompiled
+apktool d --no-src -o decompiled $apk
+apktool b -o $apk decompiled
 # Fix timestamps and remove extra field info from zip entries
 unzip $apk -d tmp
 rm $apk
