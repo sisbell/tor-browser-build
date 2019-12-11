@@ -16,6 +16,10 @@ export CC='gcc -m32'
 [% IF c("var/windows") -%]
   patch -p1 < $rootdir/escape-openssldir.patch
 [% END -%]
+# OpenSSL expects the NDK home to include the pre-assembled architecture directory
+[% IF c("var/android") -%]
+  export ANDROID_NDK_HOME=$ANDROID_NDK_HOME/[% c("var/toolchain_arch") %]
+[% END -%]
 export SOURCE_DATE_EPOCH='[% c("timestamp") %]'
 ./Configure [% c('var/configure_opts') %]
 make
