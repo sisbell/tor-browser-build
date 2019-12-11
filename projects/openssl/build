@@ -17,6 +17,10 @@ export CC='gcc -m32'
   patch -p1 < $rootdir/escape-openssldir.patch
 [% END -%]
 export SOURCE_DATE_EPOCH='[% c("timestamp") %]'
+[% IF c("var/android") -%]
+  export ANDROID_NDK_HOME=$ANDROID_NDK_HOME/[% c("var/toolchain_arch") %]
+  PATH=$ANDROID_NDK_HOME/bin:$PATH
+[% END -%]
 ./Configure [% c('var/configure_opts') %]
 make
 make DESTDIR="$distdir" install
