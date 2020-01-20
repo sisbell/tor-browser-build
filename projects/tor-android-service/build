@@ -19,6 +19,10 @@ patch -p1 < $rootdir/remove-native-build.patch
 # Remove native files, otherwise build will fail after gradle.patch
 rm -fR service/src/main/jni
 
+# Replace pre-packaged tor library with the latest build
+rm -fR service/src/main/jniLibs/*
+cp -r $rootdir/[% c('input_files_by_name/tor') %]/tor/* service/src/main
+
 # Replace libraries with the config dependencies
 rm service/libs/*
 cp $rootdir/[% c('input_files_by_name/topl') %]/*{.aar,.jar} service/libs/
