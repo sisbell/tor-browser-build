@@ -27,7 +27,7 @@ var:
   container:
     use_container: 1
   # this should be updated when the list of gradle dependencies is changed
-  gradle_dependencies_version: 6
+  gradle_dependencies_version: 7
   # used by projects/firefox-locale-bundle
   l10n-changesets.json: '[% exec("cat mobile/locales/l10n-changesets.json") %]'
 
@@ -182,3 +182,6 @@ input_files:
     # TorButton patch authored by Arthur Edelstein, from https://github.com/arthuredelstein/torbutton/ branch 2.1.10-namecoin
   - filename: namecoin-etld.patch
     enable: '[% c("var/namecoin") %]'
+  - project: jtorctl
+    name: jtorctl
+    enable: '[% c("var/android") %]'

@@ -110,8 +110,6 @@ fdff6cfa9ed9cc911c842a5d2395f209ec621ef1239d46810e9e495809d3ae09 | https://jcent
 f5655d331af6afcd4dbaedaa739b889380c771a7e83f7aea5c8544a05074cf0b | https://jcenter.bintray.com/nekohtml/nekohtml/1.9.6.2/nekohtml-1.9.6.2.pom
 95b8b357d19f63797dd7d67622fd3f18374d64acbc6584faba1c7759a31e8438 | https://jcenter.bintray.com/nekohtml/xercesMinimal/1.9.6.2/xercesMinimal-1.9.6.2.jar
 c219d697fa9c8f243d8f6e347499b6d4e8af1d0cac4bbc7b3907d338a2024c13 | https://jcenter.bintray.com/nekohtml/xercesMinimal/1.9.6.2/xercesMinimal-1.9.6.2.pom
-ec3a75bebddbf19ff56a281cf5d1ad146169dcaa0e69d7b14f4aaba2e7775f34 | https://jcenter.bintray.com/net/freehaven/tor/control/jtorctl/0.2/jtorctl-0.2.jar
-3369726ca2b0e3736c741ff3c22e06f707a1007ff20ccc5b5ba5d0d9a01ead30 | https://jcenter.bintray.com/net/freehaven/tor/control/jtorctl/0.2/jtorctl-0.2.pom
 281440811268e65d9e266b3cc898297e214e04f09740d0386ceeb4a8923d63bf | https://jcenter.bintray.com/net/java/jvnet-parent/1/jvnet-parent-1.pom
 30f5789efa39ddbf96095aada3fc1260c4561faf2f714686717cb2dc5049475a | https://jcenter.bintray.com/net/java/jvnet-parent/3/jvnet-parent-3.pom
 471395735549495297c8ff939b9a32e08b91302020ff773586d27e497abb8fbb | https://jcenter.bintray.com/net/java/jvnet-parent/4/jvnet-parent-4.pom

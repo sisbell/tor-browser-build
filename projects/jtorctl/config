@@ -1,0 +1,15 @@
+# vim: filetype=yaml sw=2
+filename: '[% project %]-[% c("version") %]-[% c("var/build_id") %]'
+git_hash: d818f4381e164273aadfcbff131da8e1a2cbc1f8
+git_url: https://git.torproject.org/jtorctl.git
+
+var:
+  deps:
+    - build-essential
+  container:
+    use_container: 1
+
+input_files:
+  - project: container-image
+  - name: '[% c("var/compiler") %]'
+    project: '[% c("var/compiler") %]'

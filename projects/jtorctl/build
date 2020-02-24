@@ -1,0 +1,13 @@
+#!/bin/bash
+[% c("var/set_default_env") -%]
+output_dir=[% dest_dir %]/[% c('filename') %]
+mkdir -p /var/tmp/build $output_dir
+
+[% pc(c('var/compiler'), 'var/setup', { compiler_tarfile => c('input_files_by_name/' _ c('var/compiler')) }) %]
+tar -C /var/tmp/build -xf [% project %]-[% c('version') %].tar.gz
+
+cd /var/tmp/build/[% project %]-[% c('version') %]
+mkdir -p classes
+javac -d classes net/freehaven/tor/control/*.java
+jar cf jtorctl-0.2.jar -C classes .
+cp jtorctl-0.2.jar $output_dir

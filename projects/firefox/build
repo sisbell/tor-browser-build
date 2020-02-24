@@ -65,6 +65,10 @@ mv -f $rootdir/[% c('input_files_by_name/mozconfig') %] .mozconfig
   # chrome/toolkit/content/global/buildconfig.html so needs to be standard for reproducibility
   mv $rootdir/[% c('input_files_by_name/gradle-dependencies') %] $gradle_repo
   cp -r $gradle_repo/m2/* $gradle_repo
+  # Copy jtrocrl to maven repo
+  jtorctl_dir=$gradle_repo/net/freehaven/tor/control/jtorctl/0.2
+  mkdir -p $jtorctl_dir
+  cp $rootdir/[% c('input_files_by_name/jtorctl') %]/* $jtorctl_dir
   # Move Android library dependencies so they will be included in the apk during the build
   cp $rootdir/[% c('input_files_by_name/topl') %]/* mobile/android/app
   cp $rootdir/[% c('input_files_by_name/tor-android-service') %]/* mobile/android/app

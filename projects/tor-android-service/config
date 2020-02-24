@@ -11,7 +11,7 @@ var:
   container:
     use_container: 1
   # this should be updated when the list of gradle dependencies is changed
-  gradle_dependencies_version: 3
+  gradle_dependencies_version: 4
 
 input_files:
   - project: container-image
@@ -24,4 +24,6 @@ input_files:
     name: topl
   - project: tor
     name: tor
+  - project: jtorctl
+    name: jtorctl
   - filename: remove-native-build.patch

@@ -1,0 +1,3 @@
+# On how to update dependencies see projects/common/how-to-create-gradle-dependencies-list.txt
+# Don't forget to update var/gradle_dependencies_version when modifying this file
+sha256sum | url

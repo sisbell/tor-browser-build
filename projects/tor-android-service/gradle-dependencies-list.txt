@@ -272,7 +272,5 @@ bd9b9cb1a3987b1427f7a18babe7f92078e32bbe2e1dca6dced00cc0e3a077a9 | https://repo.
 18f5c52120db036e88d6136f8839c832d074bdda95c756c6f429249d2db54ac6 | https://repo.maven.apache.org/maven2/org/slf4j/slf4j-parent/1.7.25/slf4j-parent-1.7.25.pom
 b51f8867c92b6a722499557fc3a1fdea77bdf9ef574722fe90ce436a29559454 | https://repo.maven.apache.org/maven2/org/sonatype/oss/oss-parent/7/oss-parent-7.pom
 fb40265f982548212ff82e362e59732b2187ec6f0d80182885c14ef1f982827a | https://repo.maven.apache.org/maven2/org/sonatype/oss/oss-parent/9/oss-parent-9.pom
-ec3a75bebddbf19ff56a281cf5d1ad146169dcaa0e69d7b14f4aaba2e7775f34 | https://repo.spring.io/plugins-release/net/freehaven/tor/control/jtorctl/0.2/jtorctl-0.2.jar
-3369726ca2b0e3736c741ff3c22e06f707a1007ff20ccc5b5ba5d0d9a01ead30 | https://repo.spring.io/plugins-release/net/freehaven/tor/control/jtorctl/0.2/jtorctl-0.2.pom
 1917871c8deb468307a584680c87a44572f5a8b0b98c6d397fc0f5f86596dbe7 | https://repo.spring.io/plugins-release/org/jetbrains/trove4j/trove4j/20160824/trove4j-20160824.jar
 5c415a9d8585200de4be1947e15291cc79f599b06249375f5c9ea22d4b2d090f | https://repo.spring.io/plugins-release/org/jetbrains/trove4j/trove4j/20160824/trove4j-20160824.pom
