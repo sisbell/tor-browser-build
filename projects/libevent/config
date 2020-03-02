@@ -9,6 +9,7 @@ filename: '[% project %]-[% c("version") %]-[% c("var/osname") %]-[% c("var/buil
 var:
   container:
     use_container: 1
+  configure_opt_project: --disable-static
 
 targets:
   osx-x86_64:
