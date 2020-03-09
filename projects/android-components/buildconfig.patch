@@ -1,0 +1,214 @@
+diff --git a/.buildconfig.yml b/.buildconfig.yml
+index 44d69a6c4..f2cb194c1 100644
+--- a/.buildconfig.yml
++++ b/.buildconfig.yml
+@@ -20,10 +20,6 @@ projects:
+     path: components/concept/engine
+     description: 'An abstract layer hiding the actual browser engine implementation.'
+     publish: true
+-  concept-push:
+-    path: components/concept/push
+-    description: 'An abstract definition of a push service component.'
+-    publish: true
+   concept-storage:
+     path: components/concept/storage
+     description: 'An abstract definition of a browser storage layer.'
+@@ -36,14 +32,6 @@ projects:
+     path: components/feature/awesomebar
+     description: 'Component connecting a concept-toolbar with a concept-awesomebar.'
+     publish: true
+-  feature-accounts:
+-    path: components/feature/accounts
+-    description: 'Component for tying an account manager with the tabs feature to facilitate auth flows.'
+-    publish: true
+-  feature-accounts-push:
+-    path: components/feature/accounts-push
+-    description: 'Feature of use cases for FxA Account that work with push support.'
+-    publish: true
+   feature-app-links:
+     path: components/feature/app-links
+     description: 'Component opening URLs in other non-browser apps.'
+@@ -112,10 +100,6 @@ projects:
+     path: components/feature/prompts
+     description: 'Feature that will subscribe to the selected session and will handle all the common prompt dialogs from web content.'
+     publish: true
+-  feature-push:
+-    path: components/feature/push
+-    description: 'Feature that implements push notifications with a supported push service.'
+-    publish: true
+   feature-pwa:
+     path: components/feature/pwa
+     description: 'Feature implementation for Progressive Web Apps (PWA).'
+@@ -124,10 +108,6 @@ projects:
+     path: components/feature/findinpage
+     description: 'Feature that will subscribe to the selected session and show an UI for results of find in page.'
+     publish: true
+-  feature-syncedtabs:
+-    path: components/feature/syncedtabs
+-    description: 'Feature that provides access to other devices'' tabs in the same account.'
+-    publish: true
+   feature-sitepermissions:
+     path: components/feature/sitepermissions
+     description: 'A feature for showing site permission request prompts.'
+@@ -156,14 +136,6 @@ projects:
+     path: components/browser/engine-gecko
+     description: 'Engine implementation based on GeckoView.'
+     publish: true
+-  browser-engine-gecko-beta:
+-    path: components/browser/engine-gecko-beta
+-    description: 'Engine implementation based on GeckoView (Beta channel).'
+-    publish: true
+-  browser-engine-gecko-nightly:
+-    path: components/browser/engine-gecko-nightly
+-    description: 'Engine implementation based on GeckoView (Nightly).'
+-    publish: true
+   browser-engine-system:
+     path: components/browser/engine-system
+     description: 'Engine implementation based on the system WebView.'
+@@ -200,10 +172,6 @@ projects:
+     path: components/browser/storage-memory
+     description: 'A memory-backed implementation of core data storage.'
+     publish: true
+-  browser-storage-sync:
+-    path: components/browser/storage-sync
+-    description: 'A syncable, Rust Places-backed implementation of core data storage.'
+-    publish: true
+   browser-tabstray:
+     path: components/browser/tabstray
+     description: 'A tabs tray component for browsers.'
+@@ -232,30 +200,14 @@ projects:
+     path: components/ui/tabcounter
+     description: 'A tab counter for browsers.'
+     publish: true
+-  service-firefox-accounts:
+-    path: components/service/firefox-accounts
+-    description: 'A library for integrating with Firefox Accounts.'
+-    publish: true
+   service-location:
+     path: components/service/location
+     description: 'A library for providing location-based services.'
+     publish: true
+-  service-sync-logins:
+-    path: components/service/sync-logins
+-    description: 'A library for integrating with Firefox Sync - Logins.'
+-    publish: true
+   service-fretboard:
+     path: components/service/fretboard
+     description: 'An Android framework for segmenting users in order to run A/B tests and rollout features gradually.'
+     publish: true
+-  service-experiments:
+-    path: components/service/experiments
+-    description: 'An Android SDK for running experiments on user segments in multiple branches.'
+-    publish: true
+-  service-glean:
+-    path: components/service/glean
+-    description: 'A client-side telemetry SDK for collecting metrics and sending them to the Mozilla telemetry service'
+-    publish: true
+   service-pocket:
+     path: components/service/pocket
+     description: 'A library to communicate with the Pocket API'
+@@ -272,10 +224,6 @@ projects:
+     path: components/support/ktx
+     description: 'A set of Kotlin extensions.'
+     publish: true
+-  support-migration:
+-    path: components/support/migration
+-    description: 'Helper code to migrate from a Fennec-based (Firefox for Android) app to an Android Components based app.'
+-    publish: true
+   support-test:
+     path: components/support/test
+     description: 'A collection of helpers for testing components (local unit tests).'
+@@ -288,18 +236,10 @@ projects:
+     path: components/support/android-test
+     description: 'A collection of helpers for testing components from instrumented (on device) tests.'
+     publish: true
+-  support-test-appservices:
+-    path: components/support/test-appservices
+-    description: 'A component for synchronizing Application Services'' unit testing dependencies used in Android Components.'
+-    publish: true
+   support-utils:
+     path: components/support/utils
+     description: 'A collection of generic helper classes.'
+     publish: true
+-  support-sync-telemetry:
+-    path: components/support/sync-telemetry
+-    description: 'A collection of sync-related telemetry helper classes and ping descriptions.'
+-    publish: true
+   support-rustlog:
+     path: components/support/rustlog
+     description: 'A bridge allowing log messages from Rust code to be sent to the log system in support-base'
+@@ -316,10 +256,6 @@ projects:
+     path: components/support/webextensions
+     description: 'A component containing building blocks for features implemented as web extensions.'
+     publish: true
+-  lib-crash:
+-    path: components/lib/crash
+-    description: 'A generic crash reporter library that can report crashes to multiple services.'
+-    publish: true
+   lib-dataprotect:
+     path: components/lib/dataprotect
+     description: 'A component using AndroidKeyStore to protect user data.'
+@@ -344,14 +280,6 @@ projects:
+     path: components/lib/publicsuffixlist
+     description: 'A library for reading and using the public suffix list.'
+     publish: true
+-  lib-push-amazon:
+-    path: components/lib/push-amazon
+-    description: 'An implementation of concept-push for the Amazon Device Messaging.'
+-    publish: true
+-  lib-push-firebase:
+-    path: components/lib/push-firebase
+-    description: 'An implementation of concept-push for the Firebase Message Service.'
+-    publish: true
+   lib-state:
+     path: components/lib/state
+     description: 'A library for maintaining application state.'
+@@ -368,48 +296,3 @@ projects:
+     path: components/tooling/fetch-tests
+     description: 'Test cases for concept-fetch implementations.'
+     publish: false
+-  samples-browser:
+-    path: samples/browser
+-    description: 'A simple browser composed from browser components.'
+-    publish: false
+-  samples-crash:
+-    path: samples/crash
+-    description: 'An app showing the integration of the lib-crash component.'
+-    publish: false
+-  samples-firefox-accounts:
+-    path: samples/firefox-accounts
+-    description: 'A simple app demoing Firefox Accounts integration.'
+-    publish: false
+-  samples-glean:
+-    path: samples/glean
+-    description: 'An app demoing how to use the Glean library to collect and send telemetry data.'
+-    publish: false
+-  samples-glean-library:
+-    path: samples/glean/samples-glean-library
+-    description: 'A third-party library used by samples-glean to demonstrate multi-library support for Glean.'
+-    publish: false
+-  samples-nearby-chat:
+-    path: samples/nearby-chat
+-    description: 'A simple app demoing use of the Nearby library to communicate between two devices.'
+-    publish: false
+-  samples-sync:
+-    path: samples/sync
+-    description: 'A simple app demoing Firefox Sync (History, Bookmarks, etc) integration.'
+-    publish: false
+-  samples-sync-logins:
+-    path: samples/sync-logins
+-    description: 'A simple app demoing Firefox Sync (Logins) integration.'
+-    publish: false
+-  samples-toolbar:
+-    path: samples/toolbar
+-    description: 'An app demoing multiple customized toolbars using the browser-toolbar component.'
+-    publish: false
+-  samples-dataprotect:
+-    path: samples/dataprotect
+-    description: 'An app demoing how to use the Dataprotect component to load and store encrypted data in SharedPreferences.'
+-    publish: false
+-  tooling-glean-gradle:
+-    path: components/tooling/glean-gradle-plugin
+-    description: 'A Gradle plugin to generate code for Glean metrics.'
+-    publish: true
+-    artifact-type: jar

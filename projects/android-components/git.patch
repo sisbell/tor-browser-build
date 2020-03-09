@@ -1,0 +1,18 @@
+diff --git a/components/support/base/build.gradle b/components/support/base/build.gradle
+index 907f29a5e..b661f4463 100644
+--- a/components/support/base/build.gradle
++++ b/components/support/base/build.gradle
+@@ -8,12 +8,7 @@ apply plugin: 'kotlin-android'
+ def generatedSrcDir = new File(buildDir, "generated/components/src/main/java")
+ 
+ def getGitHash = { ->
+-    def stdout = new ByteArrayOutputStream()
+-    exec {
+-        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+-        standardOutput = stdout
+-    }
+-    return stdout.toString().trim()
++    return "tor-build"
+ }
+ 
+ android {

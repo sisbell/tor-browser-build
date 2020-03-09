@@ -1,0 +1,45 @@
+diff --git a/buildSrc/build.gradle.kts b/buildSrc/build.gradle.kts
+index 69c23c387..f081dbb5f 100644
+--- a/buildSrc/build.gradle.kts
++++ b/buildSrc/build.gradle.kts
+@@ -2,12 +2,20 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ 
+-plugins {
+-    `kotlin-dsl`
++buildscript {
++  repositories {
++     mavenLocal()
++  }
++  dependencies {
++    classpath("org.gradle.kotlin:plugins:1.2.9")
++  }
+ }
+ 
++apply(plugin = "org.gradle.kotlin.kotlin-dsl")
++
+ repositories {
+     jcenter()
++    mavenLocal()
+ }
+ 
+ dependencies {
+diff --git a/buildSrc/src/main/java/Dependencies.kt b/buildSrc/src/main/java/Dependencies.kt
+index ad8fbe207..f3d615ee3 100644
+--- a/buildSrc/src/main/java/Dependencies.kt
++++ b/buildSrc/src/main/java/Dependencies.kt
+@@ -134,11 +134,11 @@ object Dependencies {
+ 
+     const val mozilla_remote_tabs = "org.mozilla.appservices:tabs:${Versions.mozilla_appservices}"
+ 
+-    const val mozilla_httpconfig = "org.mozilla.appservices:httpconfig:${Versions.mozilla_appservices}"
++    const val mozilla_httpconfig = "org.mozilla.appservices:httpconfig:${Versions.mozilla_appservices}@aar"
+     const val mozilla_full_megazord = "org.mozilla.appservices:full-megazord:${Versions.mozilla_appservices}"
+     const val mozilla_full_megazord_forUnitTests = "org.mozilla.appservices:full-megazord-forUnitTests:${Versions.mozilla_appservices}"
+ 
+-    const val mozilla_rustlog = "org.mozilla.appservices:rustlog:${Versions.mozilla_appservices}"
++    const val mozilla_rustlog = "org.mozilla.appservices:rustlog:${Versions.mozilla_appservices}@aar"
+     const val mozilla_sync15 = "org.mozilla.appservices:sync15:${Versions.mozilla_appservices}"
+ 
+     const val thirdparty_okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
