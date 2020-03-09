@@ -1,6 +1,6 @@
 # vim: filetype=yaml sw=2
 filename: '[% project %]-[% c("version") %]-[% c("var/build_id") %].tar.gz'
-version: 27.0.3
+version: 28.0.3
 var:
   container:
     use_container: 1
@@ -15,25 +15,26 @@ var:
     export GRADLE_HOME=/var/tmp/dist/[% project %]/gradle
     export ANDROID_HOME=$ANDROID_SDK_HOME
     export GRADLE_USER_HOME=$GRADLE_HOME
-    export PATH=$PATH:$ANDROID_NDK_HOME/[% c("var/toolchain_arch") %]/bin
+    export PATH=$PATH:$ANDROID_NDK_HOME/[% c("var/toolchain_arch") %]/bin:$GRADLE_HOME/gradle-[% c("var/gradle_version") %]/bin
   google_repo: https://dl.google.com/android/repository
+  android_api_level: 29
+  android_platform_revision: 04
+  android_ndk_version: 21
+  gradle_version: 5.6.4
 input_files:
   - project: container-image
-  - URL: '[% c("var/google_repo") %]/build-tools_r27.0.3-linux.zip'
+  - URL: '[% c("var/google_repo") %]/build-tools_r[% c("version") %]-linux.zip'
     name: build_tools
-    sha256sum: 5e1f4fc5203f13de120c56f9cc103bb2e57d940959547506196ab10ddc9e6b97
-  - URL: '[% c("var/google_repo") %]/platform-28_r04.zip'
+    sha256sum: 7954956a40633c88f693d638cbc23f68e9e2499dc7a4b7dfdaf6a3e91387749a
+  - URL: '[% c("var/google_repo") %]/platform-[% c("var/android_api_level") %]_r[% c("var/android_platform_revision") %].zip'
     name: platform
-    sha256sum: 967f8ca99b71d337aa9c7781f9d65dd8110bf5c4746f44304047bf71b20d0ded
-  - URL: '[% c("var/google_repo") %]/platform-tools_r28.0.3-linux.zip'
+    sha256sum: c9eaf2ce4e8fa6f5a8036bd3c95363d003733bf0a1bd349718cadf802db44c69
+  - URL: '[% c("var/google_repo") %]/platform-tools_r[% c("version") %]-linux.zip'
     name: platform_tools
     sha256sum: 38fccfe8d2646dd12bdd7cad22fedba0493425b98ebd6d620e4c670b9af4c53f
-  - URL: '[% c("var/google_repo") %]/sdk-tools-linux-4333796.zip'
-    name: android_sdk_tools
-    sha256sum: 92ffee5a1d98d856634e8b71132e8a95d96c83a63fde1099be3d86df3106def9
-  - URL: '[% c("var/google_repo") %]/android-ndk-r17b-linux-x86_64.zip'
+  - URL: '[% c("var/google_repo") %]/android-ndk-r[% c("var/android_ndk_version") %]-linux-x86_64.zip'
     name: android_ndk_compiler
-    sha256sum: 5dfbbdc2d3ba859fed90d0e978af87c71a91a5be1f6e1c40ba697503d48ccecd
-  - URL: https://services.gradle.org/distributions/gradle-4.10.2-bin.zip
+    sha256sum: b65ea2d5c5b68fb603626adcbcea6e4d12c68eb8a73e373bbb9d23c252fc647b
+  - URL: https://services.gradle.org/distributions/gradle-[% c("var/gradle_version") %]-bin.zip
     name: gradle_bin
-    sha256sum: b49c6da1b2cb67a0caf6c7480630b51c70a11ca2016ff2f555eaeda863143a29
+    sha256sum: 1f3067073041bc44554d0efe5d402a33bc3d3c93cc39ab684f308586d732a80d
