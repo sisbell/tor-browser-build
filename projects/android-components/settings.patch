@@ -1,0 +1,23 @@
+diff --git a/settings.gradle b/settings.gradle
+index 7c0b91828..07de0a89a 100644
+--- a/settings.gradle
++++ b/settings.gradle
+@@ -2,11 +2,18 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ 
++pluginManagement {
++  repositories {
++      mavenLocal()
++  }
++}
++
+ import org.yaml.snakeyaml.Yaml
+ 
+ buildscript {
+     repositories {
+         jcenter()
++        mavenLocal()
+     }
+ 
+     dependencies {

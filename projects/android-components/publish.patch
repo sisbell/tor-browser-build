@@ -1,0 +1,13 @@
+diff --git a/publish.gradle b/publish.gradle
+index 64cd3e3b6..695f4816b 100644
+--- a/publish.gradle
++++ b/publish.gradle
+@@ -60,7 +60,7 @@ ext.configurePublish = { groupIdArg, artifactIdArg, descriptionArg ->
+ 
+         repositories {
+             maven {
+-                url = "$buildDir/maven"
++                url = "$rootDir/android-components"
+             }
+         }
+     }

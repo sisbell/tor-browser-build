@@ -1,0 +1,15 @@
+diff --git a/buildSrc/src/main/java/Gecko.kt b/buildSrc/src/main/java/Gecko.kt
+index 2fdb12fcc..179ce27c0 100644
+--- a/buildSrc/src/main/java/Gecko.kt
++++ b/buildSrc/src/main/java/Gecko.kt
+@@ -21,7 +21,7 @@ internal object GeckoVersions {
+ 
+ @Suppress("MaxLineLength")
+ object Gecko {
+-    const val geckoview_nightly = "org.mozilla.geckoview:geckoview-nightly:${GeckoVersions.nightly_version}"
+-    const val geckoview_beta = "org.mozilla.geckoview:geckoview-beta:${GeckoVersions.beta_version}"
+-    const val geckoview_release = "org.mozilla.geckoview:geckoview:${GeckoVersions.release_version}"
++    const val geckoview_nightly = "org.mozilla.geckoview:geckoview-nightly:${GeckoVersions.nightly_version}@aar"
++    const val geckoview_beta = "org.mozilla.geckoview:geckoview-beta:${GeckoVersions.beta_version}@aar"
++    const val geckoview_release = "org.mozilla.geckoview:geckoview:${GeckoVersions.release_version}@aar"
+ }

@@ -1,0 +1,285 @@
+diff --git a/components/browser/engine-gecko-beta/build.gradle b/components/browser/engine-gecko-beta/build.gradle
+index 3b6fc7b0b..f994826d3 100644
+--- a/components/browser/engine-gecko-beta/build.gradle
++++ b/components/browser/engine-gecko-beta/build.gradle
+@@ -2,18 +2,6 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ 
+-buildscript {
+-    repositories {
+-        maven {
+-            url "https://maven.mozilla.org/maven2"
+-        }
+-
+-        dependencies {
+-            classpath "org.mozilla.telemetry:glean-gradle-plugin:${Versions.mozilla_glean}"
+-        }
+-    }
+-}
+-
+ plugins {
+     id "com.jetbrains.python.envs" version "0.0.26"
+ }
+@@ -71,8 +59,6 @@ dependencies {
+ 
+     // We only compile against Glean. It's up to the app to add those dependencies
+     // if it wants to collect GeckoView telemetry through the Glean SDK.
+-    compileOnly project(":service-glean")
+-    testImplementation project(":service-glean")
+     testImplementation Dependencies.androidx_work_testing
+ 
+     androidTestImplementation Dependencies.androidx_test_core
+@@ -81,6 +67,5 @@ dependencies {
+     androidTestImplementation project(':tooling-fetch-tests')
+ }
+ 
+-apply plugin: "org.mozilla.telemetry.glean-gradle-plugin"
+ apply from: '../../../publish.gradle'
+ ext.configurePublish(config.componentsGroupId, archivesBaseName, project.ext.description)
+diff --git a/components/browser/engine-gecko-beta/src/main/java/mozilla/components/browser/engine/gecko/glean/GeckoAdapter.kt b/components/browser/engine-gecko-beta/src/main/java/mozilla/components/browser/engine/gecko/glean/GeckoAdapter.kt
+deleted file mode 100644
+index 9630faf81..000000000
+--- a/components/browser/engine-gecko-beta/src/main/java/mozilla/components/browser/engine/gecko/glean/GeckoAdapter.kt
++++ /dev/null
+@@ -1,50 +0,0 @@
+-/* This Source Code Form is subject to the terms of the Mozilla Public
+- * License, v. 2.0. If a copy of the MPL was not distributed with this
+- * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+-
+-package mozilla.components.browser.engine.gecko.glean
+-
+-import mozilla.components.browser.engine.gecko.GleanMetrics.GleanGeckoMetricsMapping
+-import org.mozilla.geckoview.RuntimeTelemetry
+-
+-/**
+- * This implements a [RuntimeTelemetry.Delegate] that dispatches Gecko runtime
+- * telemetry to the Glean SDK.
+- *
+- * Metrics defined in the `metrics.yaml` file in Gecko's mozilla-central repository
+- * will be automatically dispatched to the Glean SDK and sent through the requested
+- * pings.
+- *
+- * This can be used, in products collecting data through the Glean SDK, by
+- * providing an instance to `GeckoRuntimeSettings.Builder().telemetryDelegate`.
+- */
+-class GeckoAdapter : RuntimeTelemetry.Delegate {
+-    // Note that the `GleanGeckoMetricsMapping` is automatically generated at
+-    // build time by the Glean SDK parsers.
+-
+-    override fun onHistogram(metric: RuntimeTelemetry.Histogram) {
+-        if (metric.isCategorical) {
+-            // Gecko categorical histograms are a bit special: their value indicates
+-            // the index of the label they want to accumulate 1 unit to. Moreover,
+-            // Gecko batches them up before sending: each value in `metric.value` is
+-            // the index of a potentially different label.
+-            GleanGeckoMetricsMapping.getCategoricalMetric(metric.name)?.let { categorical ->
+-                metric.value.forEach { labelIndex -> categorical[labelIndex.toInt()].add(1) }
+-            }
+-        } else {
+-            GleanGeckoMetricsMapping.getHistogram(metric.name)?.accumulateSamples(metric.value)
+-        }
+-    }
+-
+-    override fun onBooleanScalar(metric: RuntimeTelemetry.Metric<Boolean>) {
+-        GleanGeckoMetricsMapping.getBooleanScalar(metric.name)?.set(metric.value)
+-    }
+-
+-    override fun onStringScalar(metric: RuntimeTelemetry.Metric<String>) {
+-        GleanGeckoMetricsMapping.getStringScalar(metric.name)?.set(metric.value)
+-    }
+-
+-    override fun onLongScalar(metric: RuntimeTelemetry.Metric<Long>) {
+-        GleanGeckoMetricsMapping.getQuantityScalar(metric.name)?.set(metric.value)
+-    }
+-}
+diff --git a/components/browser/engine-gecko-nightly/build.gradle b/components/browser/engine-gecko-nightly/build.gradle
+index 8e89ee8f1..e6c4ae37e 100644
+--- a/components/browser/engine-gecko-nightly/build.gradle
++++ b/components/browser/engine-gecko-nightly/build.gradle
+@@ -2,18 +2,6 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ 
+-buildscript {
+-    repositories {
+-        maven {
+-            url "https://maven.mozilla.org/maven2"
+-        }
+-
+-        dependencies {
+-            classpath "org.mozilla.telemetry:glean-gradle-plugin:${Versions.mozilla_glean}"
+-        }
+-    }
+-}
+-
+ plugins {
+     id "com.jetbrains.python.envs" version "0.0.26"
+ }
+@@ -71,8 +59,6 @@ dependencies {
+ 
+     // We only compile against Glean. It's up to the app to add those dependencies
+     // if it wants to collect GeckoView telemetry through the Glean SDK.
+-    compileOnly project(":service-glean")
+-    testImplementation project(":service-glean")
+     testImplementation Dependencies.androidx_work_testing
+ 
+     androidTestImplementation Dependencies.androidx_test_core
+@@ -81,6 +67,5 @@ dependencies {
+     androidTestImplementation project(':tooling-fetch-tests')
+ }
+ 
+-apply plugin: "org.mozilla.telemetry.glean-gradle-plugin"
+ apply from: '../../../publish.gradle'
+ ext.configurePublish(config.componentsGroupId, archivesBaseName, project.ext.description)
+diff --git a/components/browser/engine-gecko-nightly/src/main/java/mozilla/components/browser/engine/gecko/glean/GeckoAdapter.kt b/components/browser/engine-gecko-nightly/src/main/java/mozilla/components/browser/engine/gecko/glean/GeckoAdapter.kt
+deleted file mode 100644
+index 9630faf81..000000000
+--- a/components/browser/engine-gecko-nightly/src/main/java/mozilla/components/browser/engine/gecko/glean/GeckoAdapter.kt
++++ /dev/null
+@@ -1,50 +0,0 @@
+-/* This Source Code Form is subject to the terms of the Mozilla Public
+- * License, v. 2.0. If a copy of the MPL was not distributed with this
+- * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+-
+-package mozilla.components.browser.engine.gecko.glean
+-
+-import mozilla.components.browser.engine.gecko.GleanMetrics.GleanGeckoMetricsMapping
+-import org.mozilla.geckoview.RuntimeTelemetry
+-
+-/**
+- * This implements a [RuntimeTelemetry.Delegate] that dispatches Gecko runtime
+- * telemetry to the Glean SDK.
+- *
+- * Metrics defined in the `metrics.yaml` file in Gecko's mozilla-central repository
+- * will be automatically dispatched to the Glean SDK and sent through the requested
+- * pings.
+- *
+- * This can be used, in products collecting data through the Glean SDK, by
+- * providing an instance to `GeckoRuntimeSettings.Builder().telemetryDelegate`.
+- */
+-class GeckoAdapter : RuntimeTelemetry.Delegate {
+-    // Note that the `GleanGeckoMetricsMapping` is automatically generated at
+-    // build time by the Glean SDK parsers.
+-
+-    override fun onHistogram(metric: RuntimeTelemetry.Histogram) {
+-        if (metric.isCategorical) {
+-            // Gecko categorical histograms are a bit special: their value indicates
+-            // the index of the label they want to accumulate 1 unit to. Moreover,
+-            // Gecko batches them up before sending: each value in `metric.value` is
+-            // the index of a potentially different label.
+-            GleanGeckoMetricsMapping.getCategoricalMetric(metric.name)?.let { categorical ->
+-                metric.value.forEach { labelIndex -> categorical[labelIndex.toInt()].add(1) }
+-            }
+-        } else {
+-            GleanGeckoMetricsMapping.getHistogram(metric.name)?.accumulateSamples(metric.value)
+-        }
+-    }
+-
+-    override fun onBooleanScalar(metric: RuntimeTelemetry.Metric<Boolean>) {
+-        GleanGeckoMetricsMapping.getBooleanScalar(metric.name)?.set(metric.value)
+-    }
+-
+-    override fun onStringScalar(metric: RuntimeTelemetry.Metric<String>) {
+-        GleanGeckoMetricsMapping.getStringScalar(metric.name)?.set(metric.value)
+-    }
+-
+-    override fun onLongScalar(metric: RuntimeTelemetry.Metric<Long>) {
+-        GleanGeckoMetricsMapping.getQuantityScalar(metric.name)?.set(metric.value)
+-    }
+-}
+diff --git a/components/browser/engine-gecko/build.gradle b/components/browser/engine-gecko/build.gradle
+index 03b52d8df..ed6006a73 100644
+--- a/components/browser/engine-gecko/build.gradle
++++ b/components/browser/engine-gecko/build.gradle
+@@ -2,18 +2,6 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ 
+-buildscript {
+-    repositories {
+-        maven {
+-            url "https://maven.mozilla.org/maven2"
+-        }
+-
+-        dependencies {
+-            classpath "org.mozilla.telemetry:glean-gradle-plugin:${Versions.mozilla_glean}"
+-        }
+-    }
+-}
+-
+ plugins {
+     id "com.jetbrains.python.envs" version "0.0.26"
+ }
+@@ -70,8 +58,6 @@ dependencies {
+ 
+     // We only compile against Glean. It's up to the app to add those dependencies
+     // if it wants to collect GeckoView telemetry through the Glean SDK.
+-    compileOnly project(":service-glean")
+-    testImplementation project(":service-glean")
+     testImplementation Dependencies.androidx_work_testing
+ 
+     androidTestImplementation Dependencies.androidx_test_core
+@@ -80,6 +66,5 @@ dependencies {
+     androidTestImplementation project(':tooling-fetch-tests')
+ }
+ 
+-apply plugin: "org.mozilla.telemetry.glean-gradle-plugin"
+ apply from: '../../../publish.gradle'
+ ext.configurePublish(config.componentsGroupId, archivesBaseName, project.ext.description)
+diff --git a/components/browser/engine-gecko/src/main/java/mozilla/components/browser/engine/gecko/glean/GeckoAdapter.kt b/components/browser/engine-gecko/src/main/java/mozilla/components/browser/engine/gecko/glean/GeckoAdapter.kt
+deleted file mode 100644
+index 9630faf81..000000000
+--- a/components/browser/engine-gecko/src/main/java/mozilla/components/browser/engine/gecko/glean/GeckoAdapter.kt
++++ /dev/null
+@@ -1,50 +0,0 @@
+-/* This Source Code Form is subject to the terms of the Mozilla Public
+- * License, v. 2.0. If a copy of the MPL was not distributed with this
+- * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+-
+-package mozilla.components.browser.engine.gecko.glean
+-
+-import mozilla.components.browser.engine.gecko.GleanMetrics.GleanGeckoMetricsMapping
+-import org.mozilla.geckoview.RuntimeTelemetry
+-
+-/**
+- * This implements a [RuntimeTelemetry.Delegate] that dispatches Gecko runtime
+- * telemetry to the Glean SDK.
+- *
+- * Metrics defined in the `metrics.yaml` file in Gecko's mozilla-central repository
+- * will be automatically dispatched to the Glean SDK and sent through the requested
+- * pings.
+- *
+- * This can be used, in products collecting data through the Glean SDK, by
+- * providing an instance to `GeckoRuntimeSettings.Builder().telemetryDelegate`.
+- */
+-class GeckoAdapter : RuntimeTelemetry.Delegate {
+-    // Note that the `GleanGeckoMetricsMapping` is automatically generated at
+-    // build time by the Glean SDK parsers.
+-
+-    override fun onHistogram(metric: RuntimeTelemetry.Histogram) {
+-        if (metric.isCategorical) {
+-            // Gecko categorical histograms are a bit special: their value indicates
+-            // the index of the label they want to accumulate 1 unit to. Moreover,
+-            // Gecko batches them up before sending: each value in `metric.value` is
+-            // the index of a potentially different label.
+-            GleanGeckoMetricsMapping.getCategoricalMetric(metric.name)?.let { categorical ->
+-                metric.value.forEach { labelIndex -> categorical[labelIndex.toInt()].add(1) }
+-            }
+-        } else {
+-            GleanGeckoMetricsMapping.getHistogram(metric.name)?.accumulateSamples(metric.value)
+-        }
+-    }
+-
+-    override fun onBooleanScalar(metric: RuntimeTelemetry.Metric<Boolean>) {
+-        GleanGeckoMetricsMapping.getBooleanScalar(metric.name)?.set(metric.value)
+-    }
+-
+-    override fun onStringScalar(metric: RuntimeTelemetry.Metric<String>) {
+-        GleanGeckoMetricsMapping.getStringScalar(metric.name)?.set(metric.value)
+-    }
+-
+-    override fun onLongScalar(metric: RuntimeTelemetry.Metric<Long>) {
+-        GleanGeckoMetricsMapping.getQuantityScalar(metric.name)?.set(metric.value)
+-    }
+-}

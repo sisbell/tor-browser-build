@@ -1,0 +1,33 @@
+diff --git a/build.gradle b/build.gradle
+index a33fe20d1..2c5d8faa6 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -8,6 +8,7 @@ buildscript {
+     repositories {
+         google()
+         jcenter()
++        mavenLocal()
+     }
+ 
+     dependencies {
+@@ -15,17 +16,17 @@ buildscript {
+         classpath Dependencies.tools_kotlingradle
+         classpath Dependencies.tools_dokka
+         classpath Dependencies.tools_androidmavenpublish
++        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.0.1"
+     }
+ }
+ 
+-plugins {
+-    id("io.gitlab.arturbosch.detekt").version("1.0.1")  // Check version number in `Versions.detekt`
+-}
++apply plugin: "io.gitlab.arturbosch.detekt"
+ 
+ allprojects {
+     repositories {
+         google()
+         jcenter()
++        mavenLocal()
+ 
+         maven {
+             url "https://maven.mozilla.org/maven2"
