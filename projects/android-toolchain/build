@@ -4,41 +4,35 @@ export PROJECT_PATH=/var/tmp/dist/[% project %]
 export SDK_HOME=$PROJECT_PATH/android-sdk-linux
 export NDK_HOME=$PROJECT_PATH/android-ndk
 export GRADLE_HOME=$PROJECT_PATH/gradle
+android_release_dir=android-9
+android_api_release_dir=android-10
 
-#Make directories
+# Make directories
 mkdir -p $NDK_HOME $SDK_HOME $GRADLE_HOME
 
 # Compiler Archives
-unzip -qq [% c("input_files_by_name/android_sdk_tools") %] -d $SDK_HOME
 unzip -qq [% c("input_files_by_name/android_ndk_compiler")%] -d $NDK_HOME
 unzip -qq [% c("input_files_by_name/gradle_bin") %] -d $GRADLE_HOME
 
 # NDK Archive
 cd $NDK_HOME
-mv android-ndk-r17b/* .
-rm -fR android-ndk-r17b
-
-# The architectures we support
-./build/tools/make_standalone_toolchain.py --api [% c("var/android_min_api_armv7") %] --arch arm --install-dir=./arm
-./build/tools/make_standalone_toolchain.py --api [% c("var/android_min_api_aarch64") %] --arch arm64 --install-dir=./arm64
-./build/tools/make_standalone_toolchain.py --api [% c("var/android_min_api_x86") %] --arch x86 --install-dir=./x86
-./build/tools/make_standalone_toolchain.py --api [% c("var/android_min_api_x86_64") %] --arch x86_64 --install-dir=./x86_64
+mv android-ndk-r[% c("var/android_ndk_version") %]/* .
+rm -fR android-ndk-r[% c("var/android_ndk_version") %]
 
 # Tool Archives
 cd $SDK_HOME
 unzip -qq $HOME/[% c("input_files_by_name/build_tools") %] -d $SDK_HOME
-mkdir -p build-tools/27.0.3
-mv android-8.1.0/* build-tools/27.0.3
+mkdir -p build-tools/[% c("version") %]
+mv $android_release_dir/* build-tools/[% c("version") %]
 
 unzip -qq $HOME/[% c("input_files_by_name/platform") %] -d $SDK_HOME
-mkdir -p platforms/android-28
-mv android-9/* platforms/android-28
+mkdir -p platforms/android-[% c("var/android_api_level") %]
+mv $android_api_release_dir/* platforms/android-[% c("var/android_api_level") %]
 
 unzip -qq $HOME/[% c("input_files_by_name/platform_tools") %] -d $SDK_HOME
 
 # Cleanup
-rm -fR android-8.1.0
-rm -fR android-9
+rm -fR $android_release_dir $android_api_release_dir
 
 # Archive dist directory
 cd /var/tmp/dist
