@@ -70,7 +70,7 @@ cd /var/tmp/dist/go/src
   patch -p2 < $rootdir/0001-Use-fixed-go-build-tmp-directory.patch
   # Obfs4 breaks on Android Q without this patch, see: #32303
   patch -p2 < $rootdir/90a3ce02dc25adcf1598faf11a66b151ada3f637.patch
-  CGO_ENABLED=1 CC_FOR_TARGET=[% c("var/CC") %] CGO_CFLAGS='-D__ANDROID_API__=[% c("var/android_min_api") %]' CC= CFLAGS= LDFLAGS= ./make.bash
+  CGO_ENABLED=1 CC_FOR_TARGET=[% c("var/CC") %] CC= CFLAGS= LDFLAGS= ./make.bash
 [% END -%]
 
 # This directory is non-reproducible and doesn't exist in official Go releases,
