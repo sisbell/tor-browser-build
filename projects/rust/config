@@ -22,19 +22,19 @@ targets:
         - zlib1g-dev
   android-armv7:
     var:
-      configure_opt: --enable-local-rust --enable-vendor --enable-extended --release-channel=stable --sysconfdir=etc --target=thumbv7neon-linux-androideabi --set=target.thumbv7neon-linux-androideabi.cc=$ANDROID_NDK_HOME/arm/bin/arm-linux-androideabi-gcc
+      configure_opt: --enable-local-rust --enable-vendor --enable-extended --release-channel=stable --sysconfdir=etc --target=thumbv7neon-linux-androideabi --set=target.thumbv7neon-linux-androideabi.cc=[% c("var/CC") %] --set=target.thumbv7neon-linux-androideabi.ar=arm-linux-androideabi-ar
 
   android-x86:
     var:
-      configure_opt: --enable-local-rust --enable-vendor --enable-extended --release-channel=stable --sysconfdir=etc --target=i686-linux-android --set=target.i686-linux-android.cc=$ANDROID_NDK_HOME/x86/bin/i686-linux-android-gcc
+      configure_opt: --enable-local-rust --enable-vendor --enable-extended --release-channel=stable --sysconfdir=etc --target=i686-linux-android --set=target.i686-linux-android.cc=[% c("var/CC") %] --set=target.i686-linux-android.ar=[% c("var/configure_host") %]-ar
 
   android-x86_64:
     var:
-      configure_opt: --enable-local-rust --enable-vendor --enable-extended --release-channel=stable --sysconfdir=etc --target=x86_64-linux-android --set=target.x86_64-linux-android.cc=$ANDROID_NDK_HOME/x86_64/bin/x86_64-linux-android-gcc
+      configure_opt: --enable-local-rust --enable-vendor --enable-extended --release-channel=stable --sysconfdir=etc --target=x86_64-linux-android --set=target.x86_64-linux-android.cc=[% c("var/CC") %] --set=target.x86_64-linux-android.ar=[% c("var/configure_host") %]-ar
 
   android-aarch64:
     var:
-      configure_opt: --enable-local-rust --enable-vendor --enable-extended --release-channel=stable --sysconfdir=etc --target=aarch64-linux-android --set=target.aarch64-linux-android.cc=$ANDROID_NDK_HOME/arm64/bin/aarch64-linux-android-gcc
+      configure_opt: --enable-local-rust --enable-vendor --enable-extended --release-channel=stable --sysconfdir=etc --target=aarch64-linux-android --set=target.aarch64-linux-android.cc=[% c("var/CC") %] --set=target.aarch64-linux-android.ar= [% c("var/configure_host") %]-ar
 
   linux:
     var:
