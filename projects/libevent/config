@@ -16,6 +16,9 @@ targets:
     var:
       arch_deps:
         - faketime
+  android:
+    var:
+      configure_opt_project: --disable-shared
 
 input_files:
   - project: container-image
